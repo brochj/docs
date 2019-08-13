@@ -31,10 +31,12 @@
 
 
 
-- <strong>OTHER NOTES</strong>
-  - ROCKETSEAT
-    - [Advanced Tips](/rocketseat/bootcamp/ambiente.md)
-    - [Advanced Configs](/advanced-configs)
-    - [Command Line Options](/command-line-options)
+- <strong>OTHER NOTES</strong>  
+  - BC
+  - FASE 1
+    - [Config Ambiente](/rocketseat/bootcamp/fase1/ambiente.md)
+  - FASE 2
+  
+
   
 
