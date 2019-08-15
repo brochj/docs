@@ -103,61 +103,58 @@ react-native: n/a - not inside a React Native project directory
 
 #### 2. Java Development Kit [[Link]](https://facebook.github.io/react-native/docs/getting-started.html#java-development-kit)
 
-2.1. Adiciona repositório
   ```bash
-      sudo add-apt-repository ppa:linuxuprising/java -y
+$ sudo add-apt-repository ppa:openjdk-r/ppa
+$ sudo apt-get update
+$ sudo apt-get install openjdk-8-jdk
   ```  
-2.2. Atualiza os repositórios
-  ```bash
-      sudo apt update
-  ```  
-2.3. Instala o java12
-  ```bash
-      sudo apt install oracle-java12-installer -y
-  ```  
+  >A versão 8 do JDK é obrigatória, não utilize versões mais recentes. 
+
   > Se aparecer um menu de confirmacao, navegar por ele utilizando TAB e SETAS
   
-2.4. Verificando instalação com `javac --version`
+  
+2.1. Verificando instalação com `java -version` ou `javac -version`
   ```bash
-      broch@broch-pc:~$ javac --version
-      javac 12.0.2
-  ```  
-2.5. Setando a variável de ambiente
-  ```bash
-      sudo apt install oracle-java12-set-default
-  ```
+broch@broch-pc:~$ java -version
+openjdk version "1.8.0_222"
+OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~18.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+
+  ``` 
+2.2 Instalando libs gráficas  
+
+Em grande parte das vezes precisamos instalar algumas bibliotecas da versão 32bits do Linux para conseguir emular nosso projeto e para isso vamos utilizar o seguinte comando:
+
+`sudo apt-get install gcc-multilib lib32z1 lib32stdc++6`
+
 ## Instalando o android SDK  
-> Uns 500 MB, demora um pouco mais..  
+
+Baseado no tutorial da [Rockseat](https://docs.rocketseat.dev/ambiente-react-native/android/linux#configurando-sdk-do-android-no-linux)
+
+
+#### 1. Crie uma pasta em um local desejado para instalação da SDK. Ex: `~/softwares/Android/Sdk`
+
+>Anote esse caminho para ser utilizado posteriormente
+
+>Acesse https://developer.android.com/studio/#downloads, na opção "Command line tools only" baixe a SDK referente ao seu sistema operacional. Após feito o Download, extraia o conteúdo do pacote para a pasta criada no passo anterior. 
+#### 2. Configurando as variáveis de ambiente
+
+>Com esse endereço precisamos configurar algumas variáveis ambiente em nosso sistema, procure pelo primeiro dos seguintes arquivos existentes no seu sistema: `~/.bash_profile`, `~/.profile`, `~/.zshrc` ou `~/.bashrc`.
+
+>Se nenhum desses arquivos existir, crie o ~/.bash_profile. Caso esteja utilizando uma pasta diferente para a SDK do Android, altere acima.
 
 ```bash
-  sudo apt update && sudo apt install android-sdk -y
+nano $HOME/.zshrc
 ```
-####  Verificando se instalou corretamente com o comando `adb`
-  ```bash
-    broch@broch-pc:~$ adb
-    Android Debug Bridge version 1.0.39
-    Version 1:8.1.0+r23-5~18.04
-    Installed as /usr/lib/android-sdk/platform-tools/adb
-  ```
-#### Configurando as variáveis de ambiente
+Dentro do arquivo dicione essas três linhas no arquivo (de preferência no início)
 ```bash
-nano $HOME/.bash_profile
-```
-1.  Dentro do arquivo adicionar e salvar  
-```bash
-  export ANDROID_HOME=$HOME/Android/Sdk
-  export PATH=$PATH:$ANDROID_HOME/emulator
-  export PATH=$PATH:$ANDROID_HOME/tools
-  export PATH=$PATH:$ANDROID_HOME/tools/bin
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_HOME=$HOME/softwares/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 ```  
 
-3. No terminal 
-```bash
-source $HOME/.bash_profile
-```
-
-4. Verificando se deu certo com `echo $PATH`
+Verificando se deu certo com `echo $PATH`
 ```bash
     broch@broch-pc:~$ echo $PATH
     (...)oracle/db/bin
@@ -166,7 +163,32 @@ source $HOME/.bash_profile
     :/home/broch/Android/Sdk/tools/bin
     :/home/broch/Android/Sdk/platform-tools
 ```
-5. Se aparecer esses caminhos está OK.
+Se aparecer esses caminhos está OK.
+
+
+2.1 No terminal 
+```bash
+source $HOME/.zshrc
+```
+2.2 Aceitando as licenses do sdk
+
+```bash
+~/softwares/Android/Sdk/tools/bin/sdkmanager --licenses
+```
+```bash
+~/softwares/Android/Sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-27" "build-tools;27.0.3"
+```
+
+####  Verificando se instalou SDK corretamente com o comando `adb`
+```bash
+broch@broch-pc:~$ adb
+
+Android Debug Bridge version 1.0.41
+Version 29.0.2-5738569
+Installed as /home/broch/softwares/Android/Sdk/platform-tools/adb
+```
+
+
   
  ## Script final
 
@@ -324,3 +346,8 @@ echo "Atualização de pacotes feita com sucesso"
 
  
 ```
+
+
+## Conflito de shortcuts do ubuntu com VSCode
+
+[tutorial link](https://unix.stackexchange.com/questions/394143/how-to-disable-gnome-ctrlaltdown-and-ctrlaltup-shortcut/420395#420395)
