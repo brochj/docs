@@ -32,7 +32,7 @@
 
 
 - <strong>OTHER NOTES</strong>
-  - ROCKETSEAT
+  - 
     - [Advanced Tips](/rocketseat/bootcamp/ambiente.md)
     - [Advanced Configs](/advanced-configs)
     - [Command Line Options](/command-line-options)
