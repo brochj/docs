@@ -124,3 +124,7 @@ Toda resposta que o backend retorna possui um `HTTP code`, código de três díg
   - 404: not found 
 - `5xx`: Server Error
   - 500: Internal server error
+<<<<<<< HEAD
+=======
+****
+>>>>>>> dev

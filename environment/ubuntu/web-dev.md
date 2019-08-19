@@ -192,6 +192,40 @@ Installed as /home/broch/softwares/Android/Sdk/platform-tools/adb
   
  ## Script final
 
+ ### Em desenvolvimento
+
+```bash  
+#!/bin/bash
+#Atualizando
+sudo apt update;
+sudo apt upgrade -y;
+#Instalando o curl
+sudo apt install curl -y;
+# Instalando o Yarn
+sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg;
+sudo apt-key add;
+sudo tee /etc/apt/sources.list.d/yarn.list;
+sudo apt update -y;
+sudo apt install yarn -y;
+# instalando o GIT
+sudo apt install git;
+# instalando o VS code
+sudo snap install code --classic;
+# instalando o React-native-cli
+sudo yarn global react-native-cli;
+# Instalando Java Development Kit
+sudo add-apt-repository ppa:linuxuprising/java -y;
+sudo apt update -y;
+sudo apt install oracle-java12-installer -y;
+sudo apt install oracle-java12-set-default -y;
+# Instalando o Android SDK
+sudo apt update -y;
+sudo apt install android-sdk -y;
+
+```
+
+ ### Em desenvolvimento
+
 ```bash
 
     #!/bin/bash
