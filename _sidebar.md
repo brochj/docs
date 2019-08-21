@@ -7,36 +7,29 @@
   - [My gists](https://gist.github.com/brochj)
   
 - <strong>CONFIGURANDO AMBIENTES</strong>
-- UBUNTU<sup style="color:red;">NEW!</sup>
+- UBUNTU
+<!-- <sup style="color:red;">NEW!</sup> -->
   - [My config](/environment/ubuntu/web-dev.md)
+  - [VSCode](/environment/ubuntu/ambiente-rocketseat.md)
 
 - <strong>BACKEND</strong>
-  - [Teste](/backend/ambiente.md)
+- <strong>Node.js</strong>
+  - [Estrutura básica](/backend/nodejs/estrutura.md)
   - [teste](dfsdf)
 
+
+
+<!-- 
 - <strong>FRONTEND</strong>
   - [Project 1](/frontend/project-1/ambiente.md)
   - [Project 2](/frontend/project-2/ambiente.md)
   - [Project 3](/frontend/project-3/ambiente.md)
   - [Project 4](/frontend/project-4/ambiente.md)
   - [Project 5](/frontend/project-5/ambiente.md)
-  
-
-<!-- - MOBILE
-  - [Teste](/mobile/ambiente.md)
-  - [Teste](/mobile/ambiente.md)
-  - [Teste](/mobile/ambiente.md)
-  - [Teste](/mobile/ambiente.md)
-  - [Teste](/mobile/ambiente.md) -->
+   -->
 
 
 
-- <strong>OTHER NOTES</strong>  
-  - BC
-  - FASE 1
-    - [Config Ambiente](/rocketseat/bootcamp/fase1/ambiente.md)
-  - FASE 2
-  
 
   
 
