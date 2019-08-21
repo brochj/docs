@@ -89,4 +89,37 @@ class User extends Model {
 - No arquivo `src/app.js` importar esse loader `import './database';` . Não precisa atribuir um nome, pois o nomde do loader é `index.js`.
 
 ### Testando Model criado
-- Para verificar se o model está funcionando, no arquivo de `routes.js
+- Para verificar se o model está funcionando, no arquivo de `routes.js` fazer as alterações.
+
+```js
+  import { Router } from 'express';
+  import User from './app/models/User';
+
+  const routes = new Router();
+
+  routes.get('/', async (req, res) => {
+    const user = await User.create({
+      name: 'Oscar',
+      email: 'brochj@gmail.com',
+      password_hash: '213124321',
+    });
+
+    return res.json(user);
+  });
+
+  export default routes;
+```
+
+-  Acessar `http://localhost:3333/` e a resposta deve ser:
+
+```json
+{
+  "id":4,
+  "name":"Oscar",
+  "email":"brochj@gmail.com",
+  "password_hash":"213124321",
+  "updatedAt":"2019-08-21T20:52:01.375Z",
+  "createdAt":"2019-08-21T20:52:01.375Z",
+  "provider":false
+}
+```
