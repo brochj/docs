@@ -16,6 +16,8 @@
 - <strong>Node.js</strong>
   - [Estrutura básica](/backend/nodejs/estrutura.md)
   - [Docker](/backend/nodejs/docker.md)
+  - [Estrutura MVC](/backend/nodejs/estrutura-mvc.md)
+  - [Sequelize](/backend/nodejs/sequelize.md)
 
 
 
