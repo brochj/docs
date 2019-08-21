@@ -43,3 +43,25 @@
 
   export default routes;
 ```
+
+### Testando Controller criado
+- Para verificar se o controller está funcionando, criar uma request do tipo POST no Insomnia, passando no body.
+
+```json
+{
+	"name": "Oscar broch",
+	"email": "brochj2@gmail.com",
+	"password_hash": "12345"
+}
+```
+
+-  `http://localhost:3333/users` e a resposta deve ser como abaixo, e no Postbird esse usuário deve aparecer lá :
+
+```json
+{
+  "id": 5,
+  "name": "Oscar broch",
+  "email": "brochj2@gmail.com",
+  "provider": false
+}
+```

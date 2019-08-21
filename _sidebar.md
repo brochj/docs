@@ -19,6 +19,8 @@
   - [Estrutura MVC](/backend/nodejs/estrutura-mvc.md)
   - [Sequelize](/backend/nodejs/sequelize.md)
   - [Models](/backend/nodejs/models.md)
+  - [Controllers](/backend/nodejs/controllers.md)
+  - [Gerar Hash](/backend/nodejs/generate-hash.md)
 
 
 
