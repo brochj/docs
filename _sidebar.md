@@ -18,6 +18,7 @@
   - [Docker](/backend/nodejs/docker.md)
   - [Estrutura MVC](/backend/nodejs/estrutura-mvc.md)
   - [Sequelize](/backend/nodejs/sequelize.md)
+  - [Models](/backend/nodejs/models.md)
 
 
 

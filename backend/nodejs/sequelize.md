@@ -1,4 +1,5 @@
 # Sequelize
+É responsável por fazer a conexão com o banco de dados.
 
 ## Instalando o Sequelize
 >Necessita da estrutura MVC implementada.
