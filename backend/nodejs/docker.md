@@ -1,4 +1,10 @@
-# Docker
+# Docker  <!-- omit in toc --> 
+- [Instalando o Docker](#instalando-o-docker)
+- [Comandos básicos](#comandos-b%c3%a1sicos)
+- [Criando o container](#criando-o-container)
+- [Postbird GUI](#postbird-gui)
+  - [Criando o Database](#criando-o-database)
+
 
 ## Instalando o Docker
 - Pesquisar por [**docker ce**](https://docs.docker.com/install/linux/docker-ce/ubuntu/) e seguir os passos de instalação.
@@ -21,7 +27,7 @@
 
 
 
-## Criando o Database
+## Criando o container
 - Pesquisar por [docker postgres](https://hub.docker.com/_/postgres) lá terá como utilizar a imagem
 
 `$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres`
@@ -52,4 +58,25 @@ sudo snap install postbird
 
 - Salvar e conectar.
 
-- No menu lateral `select database`, dar um `create database` e dar o nome (template vazio e encoding UTF8(client encoding)).
+### Criando o Database
+- No menu lateral `select database`, dar um `create database` e **definir um nome** (template vazio e encoding UTF8(client encoding)).
+
+> IMPORTANTE: O nome da database (aqui no Postbird) terá que ser o mesmo que será criado no arquivo `config/database`  se não vai dar o erro abaixo quando for executar a migration lá na frente.
+
+- **Exemplo**
+- Se no arquivo `database/config.js` o nome database for `meetapp`.
+```js
+  module.exports = {
+    ...
+    database: 'meetapp',
+    ...
+  };
+```
+
+- E nome do database no Postbird for `meetappsss` vai dar o seguinte erro quando for executar a migration.
+```bash
+Loaded configuration file "src/config/database.js".
+ERROR: database "meetappsss" does not exist
+error Command failed with exit code 1.
+``` 
+
