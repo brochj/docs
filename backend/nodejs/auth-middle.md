@@ -6,7 +6,7 @@
 
 Simplificando, a rota update só será acessível se na request for passado um Header com o JWT (válido) da sessão.
 
-### Criando o middleware
+## Criando o middleware
 
 Esse middleware tem como objetivo verificar se o usuário está logado.
 
@@ -86,5 +86,50 @@ export default routes;
 
 
 ```
+## Criando o update()
 
 - Criar o método `update()` no `UserController.js`
+
+```js
+async update(req, res) {
+   
+    const { email, oldPassword } = req.body;
+
+    const user = await User.findByPk(req.userId); // user contem os dados do DB
+
+    // Verificando se o usario quis trocar de email.
+    if (email !== user.email) {
+      // Verificando se ja existe algum outro usuário 
+      // com email passado pelo usuário logado
+      const userExists = await User.findOne({ where: { email } });
+
+      if (userExists) {
+        return res.status(400).json({ error: 'User already exists' });
+      }
+    }
+
+    // Verificando se o usario quis trocar de senha.
+    // Verificando se a senha "antiga" confere com a senha salva no DB
+    if (oldPassword && !(await user.checkPassword(oldPassword))) {
+      return res.status(401).json({ error: 'Password does not match' });
+    }
+
+    const { id, name, provider } = await user.update(req.body);
+
+    return res.json({ id, name, email, provider });
+  }
+``` 
+## Verificando se está funcionando
+- Fazer uma request no Insomnia passando um email e password de um usuário que já está no banco de dados e teve a senha salva no DB através de geração de hash.
+
+- Mudando nome
+
+![img](imgs/update-name.png)
+
+- Passando um email que já existe no banco de dados
+
+![img](imgs/update-email.png)
+
+- Passando uma senha errada
+
+![img](imgs/update-pw.png)

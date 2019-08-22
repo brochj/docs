@@ -23,6 +23,7 @@
   - [Gerar Hash](/backend/nodejs/generate-hash.md)
   - [Autenticação JWT](/backend/nodejs/auth-jwt.md)
   - [Middleware de autenticação](/backend/nodejs/auth-middle.md)
+  - [Validando](/backend/nodejs/validate.md)
 
 
 
