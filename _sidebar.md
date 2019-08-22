@@ -21,7 +21,8 @@
   - [Models](/backend/nodejs/models.md)
   - [Controllers](/backend/nodejs/controllers.md)
   - [Gerar Hash](/backend/nodejs/generate-hash.md)
-  - [Auutenticação JWT](/backend/nodejs/auth-jwt.md)
+  - [Autenticação JWT](/backend/nodejs/auth-jwt.md)
+  - [Middleware de autenticação](/backend/nodejs/auth-middle.md)
 
 
 
