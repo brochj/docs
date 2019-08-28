@@ -5,7 +5,7 @@
 - Criar uma metodo
 
 ```js
-....
+...
   static associate(models) {
     // Abaixo - esse model user pertence ao model file
     this.belongsTo(models.File, { foreignKey: 'avatar_id' }); // avatar_id sera criada na tabela de Users

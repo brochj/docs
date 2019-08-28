@@ -24,8 +24,10 @@
   - [Autenticação JWT](/backend/nodejs/auth-jwt.md)
   - [Middleware de autenticação](/backend/nodejs/auth-middle.md)
   - [Validando](/backend/nodejs/validate.md)
-  - [Upload de arquivos](/backend/nodejs/files-update.md)
+  - [Upload de arquivos](/backend/nodejs/files-upload.md)
   - [Relacionando Models](/backend/nodejs/associate-models.md)
+  - [Listagens](/backend/nodejs/listing.md)
+  - [Enviar Email](/backend/nodejs/send-email.md)
 
 
 

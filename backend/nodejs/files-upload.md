@@ -91,6 +91,21 @@ export default routes;
 
 ![img](imgs/files-update/file.png)
 
+- E dentro do `req.file` tem todas as info do arquivo como mostrado abaixo.
+
+```json
+{
+  "fieldname": "file",
+  "originalname": "profile.jpg",
+  "encoding": "7bit",
+  "mimetype": "image/jpeg",
+  "destination": "/home/broch/projects/meetapp-backend/tmp/uploads",
+  "filename": "b812986d7f10c01ebaea181ce8315c52.jpg",
+  "path": "/home/broch/projects/meetapp-backend/tmp/uploads/b812986d7f10c01ebaea181ce8315c52.jpg",
+  "size": 548071
+}
+```
+
 # Salvando no banco de dados
 
 ## FileController
@@ -103,7 +118,6 @@ class FileController {
     return res.json({ ok: true });
   }
 }
-
 export default new FileController();
 
 ```
@@ -181,12 +195,10 @@ yarn sequelize db:migrate
       return this;
     }
   }
-
   export default File;
-
 ```
 
-- dentro do loader de model em `database/index.js` precisa importar esse Model File
+- Dentro do loader de model em `database/index.js` precisa importar esse Model File
 - E colocar dentro do array  `const models = [User, File];`
 
 - A partir desse momento é possivel fazer o import do Model File dentro do `FileController`.
@@ -220,9 +232,10 @@ yarn sequelize db:migrate
 
 ![img](imgs/files-update/img-db.png)
 
-## Gerar relacao entre as tabelas
+## Relacionamento de tabelas
 
--  Criar um novo campo na tabela de usuários, para isso tem que criar uma nova migration
+-  Criar um novo campo na tabela de usuários, para isso tem que criar uma nova migration.
+
 ```bash
 yarn sequelize migration:create --name=add-avatar-field-to-users
 ```
@@ -262,3 +275,54 @@ yarn sequelize db:migrate
 
 - Fazer a request no Insomnia e ver a colunada adicionada no Postbird.
 
+## Método associate()
+
+>(modulo 3 - Avatar do usuario - 9:23)
+
+- Adicionar um coluna na tabela `users`, para fazer o relacionamento com a tabela `files`
+- Criando uma nova migration.
+
+```bash
+yarn sequelize migration:create --name=add-avatar-field-to-users
+```
+
+```js
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.addColumn('users', 'avatar_id', {
+      type: Sequelize.INTEGER,
+      references: { model: 'files', key: 'id' },
+      ouUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+      allowNull: true,
+    });
+  },
+
+  down: queryInterface => {
+    return queryInterface.removeColumn('users', 'avatar_id');
+  },
+};
+```
+- Aplicar a migration. `yarn sequeliz db:migrate`
+
+- add o campo avatar_id na requisição (do insomnia) do Users/Update.
+
+
+- Para finalizar o relacionamento do model de User com o Model de File
+- Criar um método associate() dentro de `User.js`
+
+```js
+static  associate(models) {
+  this.belongsTo(models.file, { foreignKey:  'avatar_id' });
+}
+```
+
+- Chamar o método o `associate()` dentro de `database/index.js` adicionando um `map()` condicional. Ou seja, o método só executa se ele existir dentro do model que está sendo percorrido pelo `map()` no momento.
+
+```js
+models
+  .map(model => model.init(this.connection))
+  .map(model => model.associate && model.associate(this.connection.models));
+```
+
+- Fazer a requisicao no insomnia, o id da table files deve aprecer no avatar_id da table users.
