@@ -155,3 +155,22 @@ yarn queue
 ```
 - Para verificar se funcionou, adicionar o `console.log('A fila executou');` dentro do método handle e fazer a requisição e verificar se apareceu a mensagem terminal da queue e o email no Mailtrap.
 - Depois de adicionar esse sistema de Queues, o retorno da requição não deve mais demorar 2~3seg como antes. deve voltar a fincar na casa dos 50~200ms.
+
+# Monitorando falhas na fila
+
+- Em `lib/Queue.js` adiconar o metodo `on('failed')` dentro do `processQueue()` e criar o método `handleFailure()`
+```js
+processQueue() {
+    jobs.forEach(job => {
+      const { bee, handle } = this.queues[job.key];
+
+      bee.on('failed', this.handleFailure).process(handle);
+    });
+  }
+
+handleFailure(job, err){
+  console.log(`Queue ${job.queue.name}: FAILED:`, err)
+}
+```
+
+- Agora de der algum erro durante a fila, será mostrado no terminal do `yarn queue`

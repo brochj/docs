@@ -1,4 +1,4 @@
-#
+<!-- #
 
 ## alterando algo no banco de dados
 - cria a migration
@@ -21,4 +21,7 @@ docker run --name mongobarber -p 27017:27017 -d -t mongo
 similar ao sequelize
 ```
 yarn add mongoose
-```
+``` -->
+
+# Listagens
+

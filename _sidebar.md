@@ -29,6 +29,8 @@
   - [Listagens](/backend/nodejs/listing.md)
   - [Enviar Email](/backend/nodejs/send-email.md)
   - [Criando Queue's](/backend/nodejs/create-queue.md)
+  - [Tratamento de Excessões](/backend/nodejs/exception-error.md)
+  - [Variáveis ambiente](/backend/nodejs/dotenv.md)
 
 
 
