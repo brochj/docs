@@ -326,3 +326,33 @@ models
 ```
 
 - Fazer a requisicao no insomnia, o id da table files deve aprecer no avatar_id da table users.
+
+# Criando Rota para exibir arquivos.
+- No model `File.js` adiconar um campo virtual.
+
+```js
+url: {
+  type: Sequelize.VIRTUAL,
+  get() {
+    return `${process.env.APP_URL}/files/${this.path}`;
+  },
+```
+
+- em `app.js`
+- Utilizando o recurso do express que é `static.express` que serve para servir arquivos estáticos
+- No método middleware adicionar
+
+```js
+ middlewares() {
+    ...
+    ...
+
+    this.server.use(express.urlencoded({ extended: false }));
+    this.server.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
+  }
+```
+- `'/files'` é a rota q servirá os arquivos estaticos
+-  `path.resolve(__dirname, '..', 'tmp', 'uploads')` é onde os arquivos estão salvos.
