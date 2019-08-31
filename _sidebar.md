@@ -42,6 +42,11 @@
   - [Cheat-sheet](/frontend/react/reactjs/cheat-sheet.md)
   - [Configurando Estrutura](/frontend/react/reactjs/structure.md)
   - [Componente Raiz](/frontend/react/reactjs/root-component.md)
+  - [Local Storage](/frontend/react/reactjs/local-storage.md)
+  - [Configurando do zero](/frontend/react/reactjs/config.md)
+  - [Configurando rotas](/frontend/react/reactjs/routes.md)
+  - [Styled components](/frontend/react/reactjs/styled-components.md)
+  - [Requisiçõe](/frontend/react/reactjs/requests.md)
   
 
 
