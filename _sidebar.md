@@ -47,6 +47,12 @@
   - [Configurando rotas](/frontend/react/reactjs/routes.md)
   - [Styled components](/frontend/react/reactjs/styled-components.md)
   - [Requisiçõe](/frontend/react/reactjs/requests.md)
+
+
+- <strong>MOBILE</strong>
+- <strong>React-Native</strong>
+  - [Reactotron](/frontend/react/reactjs/reactotron.md)
+  
   
 
 
