@@ -1,14 +1,15 @@
-
-
 - <strong>ABOUT ME</strong>
+
   - [Personal page](https://brochj.github.io/)
   - [Github](https://github.com/brochj)
   - [My repositories](https://github.com/brochj?tab=repositories)
   - [My gists](https://gist.github.com/brochj)
-  
+
 - <strong>CONFIGURANDO AMBIENTES</strong>
 - UBUNTU
-<!-- <sup style="color:red;">NEW!</sup> -->
+
+  <!-- <sup style="color:red;">NEW!</sup> -->
+
   - [My config](/environment/ubuntu/web-dev.md)
   - [VSCode](/environment/ubuntu/ambiente-rocketseat.md)
 
@@ -34,11 +35,8 @@
   - [Tratamento de Excessões](/backend/nodejs/exception-error.md)
   - [Variáveis ambiente](/backend/nodejs/dotenv.md)
 
-
-
-
-- <strong>FRONTEND</strong>
-- <strong>Reactjs</strong>
+* <strong>FRONTEND</strong>
+* <strong>Reactjs</strong>
   - [Cheat-sheet](/frontend/react/reactjs/cheat-sheet.md)
   - [Configurando Estrutura](/frontend/react/reactjs/structure.md)
   - [Componente Raiz](/frontend/react/reactjs/root-component.md)
@@ -47,16 +45,8 @@
   - [Configurando rotas](/frontend/react/reactjs/routes.md)
   - [Styled components](/frontend/react/reactjs/styled-components.md)
   - [Requisiçõe](/frontend/react/reactjs/requests.md)
-
+  - [Redux](/frontend/react/reactjs/redux.md)
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
   - [Reactotron](/frontend/react/reactjs/reactotron.md)
-  
-  
-
-
-
-
-  
-
