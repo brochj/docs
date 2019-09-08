@@ -1,5 +1,4 @@
 # HOME
 
-## TODO
-- [] Estudar REGEX (Regular Expressions)
+#### Documentação de quase tudo que vou aprendendo
 
