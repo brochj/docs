@@ -51,4 +51,4 @@
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
-  - [Reactotron](/frontend/react/reactjs/reactotron.md)
+  - [Reactotron](/frontend/mobile/react-native/reactotron.md)
