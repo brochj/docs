@@ -46,6 +46,8 @@
   - [Styled components](/frontend/react/reactjs/styled-components.md)
   - [Requisiçõe](/frontend/react/reactjs/requests.md)
   - [Redux](/frontend/react/reactjs/redux.md)
+  - [Redux-saga](/frontend/react/reactjs/redux-saga.md)
+  - [Toastify](/frontend/react/reactjs/toastify.md)
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
