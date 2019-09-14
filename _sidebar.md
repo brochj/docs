@@ -48,6 +48,7 @@
   - [Redux](/frontend/react/reactjs/redux.md)
   - [Redux-saga](/frontend/react/reactjs/redux-saga.md)
   - [Toastify](/frontend/react/reactjs/toastify.md)
+  - [React Hooks](/frontend/react/reactjs/react-hooks.md)
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>

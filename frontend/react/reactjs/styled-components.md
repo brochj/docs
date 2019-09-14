@@ -64,6 +64,7 @@ export const Title = styled.h1`
 
 # Criando estilização global
 - Criar um arquivo em `src/styles/global.js`
+
 ```js
 //global.js
 import { createGlobalStyle } from 'styled-components';
@@ -95,6 +96,7 @@ export default createGlobalStyle`
     cursor: pointer;
   
 `;
+
 ```
 
 - Importar esse arquivo em `app.js`
