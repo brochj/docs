@@ -43,8 +43,9 @@
   - [Local Storage](/frontend/react/reactjs/local-storage.md)
   - [Configurando do zero](/frontend/react/reactjs/config.md)
   - [Configurando rotas](/frontend/react/reactjs/routes.md)
+  - [Reactotron](/frontend/react/reactjs/reactotron.md)
   - [Styled components](/frontend/react/reactjs/styled-components.md)
-  - [Requisiçõe](/frontend/react/reactjs/requests.md)
+  - [Requisições](/frontend/react/reactjs/requests.md)
   - [Redux](/frontend/react/reactjs/redux.md)
   - [Redux-saga](/frontend/react/reactjs/redux-saga.md)
   - [Toastify](/frontend/react/reactjs/toastify.md)
@@ -52,4 +53,4 @@
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
-  - [Reactotron](/frontend/mobile/react-native/reactotron.md)
+  - [Reactotron](/mobile/react-native/reactotron.md)
