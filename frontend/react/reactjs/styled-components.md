@@ -77,12 +77,15 @@ export default createGlobalStyle`
     box-sizing: border-box
   }
 
+  *:focus{
+    outline: 0;
+  }
+
   html, body, #root {
     min-height: 100%;
   }
 
   body {
-    background: #7159c1;
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -94,12 +97,21 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
   
+  a {
+    text-decoration: none
+  }
+
+  ul{
+    list-style: none
+  }
 `;
 
 ```
 
 - Importar esse arquivo em `app.js`
+
 ```js
 //app.js
 import React from 'react';

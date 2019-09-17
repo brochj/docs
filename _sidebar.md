@@ -34,15 +34,20 @@
   - [Criando Queue's](/backend/nodejs/create-queue.md)
   - [Tratamento de Excessões](/backend/nodejs/exception-error.md)
   - [Variáveis ambiente](/backend/nodejs/dotenv.md)
+- <strong>Testes Automatizados</strong>
+  - [Jest](/backend/test/jest.md)
 
 * <strong>FRONTEND</strong>
 * <strong>Reactjs</strong>
   - [Cheat-sheet](/frontend/react/reactjs/cheat-sheet.md)
   - [Configurando Estrutura](/frontend/react/reactjs/structure.md)
+  - [Root import](/frontend/react/reactjs/root-import.md)
   - [Componente Raiz](/frontend/react/reactjs/root-component.md)
   - [Local Storage](/frontend/react/reactjs/local-storage.md)
   - [Configurando do zero](/frontend/react/reactjs/config.md)
   - [Configurando rotas](/frontend/react/reactjs/routes.md)
+  - [Rotas Privadas](/frontend/react/reactjs/private-routes.md)
+  - [Layouts reutilizáveis](/frontend/react/reactjs/layout.md)
   - [Reactotron](/frontend/react/reactjs/reactotron.md)
   - [Styled components](/frontend/react/reactjs/styled-components.md)
   - [Requisições](/frontend/react/reactjs/requests.md)
