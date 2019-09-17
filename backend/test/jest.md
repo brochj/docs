@@ -248,7 +248,7 @@ Para chamadas a API é possível utilizar o axios e fetch, porém tem uma lib qu
 yarn add supertest -D
 ```
 
-### Estrutura
+## Estrutura
 - Teste que envolvem banco de dados, chamadas a api e etc, recebem o nome de integration
 - Criar o arquivo `user.test.js`
 

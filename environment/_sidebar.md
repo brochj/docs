@@ -1,5 +1,0 @@
-- [HOME](/)
-- CONFIGURANDO AMBIENTES
-- UBUNTU
-  - [Web-Dev](/environment/ubuntu/web-dev.md)
-  - [Project 2](/frontend/project-2/ambiente.md)
