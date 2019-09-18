@@ -36,6 +36,8 @@
   - [Variáveis ambiente](/backend/nodejs/dotenv.md)
 - <strong>Testes Automatizados</strong>
   - [Jest](/backend/test/jest.md)
+- <strong>Deploy</strong>
+  - [Nodejs](/backend/deploy/nodejs.md)
 
 * <strong>FRONTEND</strong>
 * <strong>Reactjs</strong>
