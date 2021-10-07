@@ -14,6 +14,8 @@
   - [VSCode](/environment/ubuntu/ambiente-rocketseat.md)
 
 - <strong>BACKEND</strong>
+- <strong>Docker</strong>
+  - [Introdução](/backend/docker/introduction.md)
 - <strong>Databases</strong>
   - [MongoDB](/backend/database/mongo/mongo-db.md)
 - <strong>Node.js</strong>
