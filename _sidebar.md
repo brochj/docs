@@ -63,3 +63,9 @@
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
   - [Reactotron](/mobile/react-native/reactotron.md)
+
+- <strong>Python</strong>
+  - [Reactotron](/python/basics.md)
+
+- <strong>GIT</strong>
+  - [Reactotron](/git/git-tricks.md)
