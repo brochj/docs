@@ -12,8 +12,15 @@
 
 ## Intalling on Manjaro
 
+[GHCup is an installer for the general purpose language Haskell.](https://www.haskell.org/ghcup/)
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+```
+
 Installing Haskell ghci on Manjaro Linux.
 terminal:
+GHcup instala tudo
 
 `pacman -S stack`
 `stack ghci`
