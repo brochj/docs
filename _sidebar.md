@@ -65,7 +65,18 @@
   - [Reactotron](/mobile/react-native/reactotron.md)
 
 - <strong>Python</strong>
-  - [Reactotron](/python/basics.md)
+  - [Basics](/python/basics.md)
+
+- <strong>Haskell</strong>
+  - <strong>Modules</strong>
+    - [Data.List](/haskell/modules/data.list.md)
+  - [2. Basics](/haskell/2-basics.md)
+  - [3. Types and Typeclasses](/haskell/3-types-and-typeclasses.md)
+  - [4. Syntax in functions](/haskell/4-syntax-in-functions.md)
+  - [5. Recursion](/haskell/5-recursion.md)
+  - [6. Higher Order Functions](/haskell/6-higher-order-functions.md)
+  - [7. Modules](/haskell/7-modules.md)
+
 
 - <strong>GIT</strong>
   - [Reactotron](/git/git-tricks.md)

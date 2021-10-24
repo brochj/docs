@@ -299,7 +299,7 @@ describeList xs = "The list is " ++ case xs of [] -> "empty."
 
 They are useful for pattern matching against something in the middle of an expression. 
 
-Because pattern matching in function definitions is syntactic sugar for case expressions, we could have also defined this like so:
+**Because pattern matching in function definitions is syntactic sugar for case expressions**, we could have also defined this like so:
 
 ```haskell
 -- Using pattern matching

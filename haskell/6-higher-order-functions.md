@@ -294,6 +294,19 @@ ghci> sum (takeWhile (<10000) [n^2 | n <- [1..], odd (n^2)])
 166650
 ```
 
+### dropWhile
+
+**`dropWhile` is the inverse of `takeWhile`**
+
+```sh
+ghci> dropWhile (>3) [8,4,2,1,5,6] 
+[2,1,5,6]
+
+ghci> takeWhile (>3) [8,4,2,1,5,6] 
+[8,4]
+```
+
+
 ## Lambdas
 
 - Lambdas are basically anonymous functions that are used because we need some functions only once.
