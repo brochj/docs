@@ -72,20 +72,131 @@ import qualified Data.Map as M
 Now, to reference` Data.Map`'s `filter` function, we just use `M.filter`.
 
 
+## Making our own modules
 
+When making programs, it's good practice to take functions and types that work towards a similar purpose and put them in a module. That way, you can easily reuse those functions in other programs by just importing your module.
 
+We'll start by creating a file called `Geometry.hs`
 
+At the beginning of a module, we specify the module name. If we have a file called `Geometry.hs`, then we should name our module `Geometry`. 
 
+Then, we specify the functions that it exports and after that, we can start writing the functions. So we'll start with this.
 
+```haskell
+module Geometry  
+( sphereVolume  
+, sphereArea  
+, cubeVolume  
+, cubeArea  
+, cuboidArea  
+, cuboidVolume  
+) where  
+  
+sphereVolume :: Float -> Float  
+sphereVolume radius = (4.0 / 3.0) * pi * (radius ^ 3)  
+  
+sphereArea :: Float -> Float  
+sphereArea radius = 4 * pi * (radius ^ 2)  
+  
+cubeVolume :: Float -> Float  
+cubeVolume side = cuboidVolume side side side  
+  
+cubeArea :: Float -> Float  
+cubeArea side = cuboidArea side side side  
+  
+cuboidVolume :: Float -> Float -> Float -> Float  
+cuboidVolume a b c = rectangleArea a b * c  
+  
+cuboidArea :: Float -> Float -> Float -> Float  
+cuboidArea a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea c b * 2  
+  
+rectangleArea :: Float -> Float -> Float  
+rectangleArea a b = a * b  
+```
 
+We want our module to just present functions for dealing with three dimensional objects, we used `rectangleArea` but we didn't export it.
 
+### hierarchical structures
 
+Modules can also be given a hierarchical structures. Each module can have a number of sub-modules and they can have sub-modules of their own. Let's section these functions off so that `Geometry` is a module that has three sub-modules, one for each type of object.
 
+First, we'll make a folder called `Geometry`. **Mind the capital G**. In it, we'll place three files: `Sphere.hs`, `Cuboid.hs`, and `Cube.hs`. Here's what the files will contain:
 
+```sh
+Geometry
+ ├── Sphere.hs
+ ├── Cuboid.hs
+ └── Cube.hs
+```
 
+- `Sphere.hs`
+```haskell
+module Geometry.Sphere  
+( volume  
+, area  
+) where  
+  
+volume :: Float -> Float  
+volume radius = (4.0 / 3.0) * pi * (radius ^ 3)  
+  
+area :: Float -> Float  
+area radius = 4 * pi * (radius ^ 2)  
+```
 
+- `Cuboid.hs`
 
+```haskell
+module Geometry.Cuboid  
+( volume  
+, area  
+) where  
+  
+volume :: Float -> Float -> Float -> Float  
+volume a b c = rectangleArea a b * c  
+  
+area :: Float -> Float -> Float -> Float  
+area a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea c b * 2  
+  
+rectangleArea :: Float -> Float -> Float  
+rectangleArea a b = a * b  
+```
 
+- `Cube.hs`
+
+```haskell
+module Geometry.Cube  
+( volume  
+, area  
+) where  
+  
+import qualified Geometry.Cuboid as Cuboid  
+  
+volume :: Float -> Float  
+volume side = Cuboid.volume side side side  
+  
+area :: Float -> Float  
+area side = Cuboid.area side side side  
+```
+
+Alright! So first is `Geometry.Sphere`. Notice how we placed it in a folder called `Geometry` and then defined the module name as `Geometry.Sphere`.
+
+Also notice how in all three sub-modules, we defined functions with the same names. We can do this because they're separate modules. 
+
+So now if we're in a file that's on the same level as the Geometry folder, we can do, say:
+
+```haskell
+import Geometry.Sphere  
+```
+
+ And if we want to juggle two or more of these modules, we have to do qualified imports because they export functions with the same names.
+
+```haskell
+import qualified Geometry.Sphere as Sphere  
+import qualified Geometry.Cuboid as Cuboid  
+import qualified Geometry.Cube as Cube  
+```
+
+And then we can call `Sphere.area`, `Sphere.volume`, `Cuboid.area`, etc. and each will calculate the area or volume for their corresponding object.
 
 
 
