@@ -16,10 +16,16 @@
 - <strong>BACKEND</strong>
 - <strong>Docker</strong>
   - [Introdução](/backend/docker/introduction.md)
+  - [Run NodeJs](/backend/docker/run-nodejs.md)
 - <strong>Databases</strong>
   - [MongoDB](/backend/database/mongo/mongo-db.md)
+- <strong>Expressjs</strong>
+  - [Basic Routing](/backend/nodejs/expressjs/basic-routing.md)
+  - [Serving Static files](/backend/nodejs/expressjs/serving-static-files.md)
+
 - <strong>Node.js</strong>
   - [Estrutura básica](/backend/nodejs/estrutura.md)
+  - [Node Js Project Folder Structure](/backend/nodejs/project-folder-structure.md)
   - [Docker](/backend/nodejs/docker.md)
   - [Estrutura MVC](/backend/nodejs/estrutura-mvc.md)
   - [Sequelize](/backend/nodejs/sequelize.md)

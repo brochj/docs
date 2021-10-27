@@ -75,6 +75,8 @@ yarn add express
 
 ```bash
 yarn add sucrase nodemon -D
+# OR
+yarn add sucrase nodemon --dev
 ```
 
 - package.json
@@ -103,6 +105,7 @@ yarn add sucrase nodemon -D
 - Instalar o ESLint com dependência de desenvolvimento.
 ```bash
 yarn add eslint -D
+yarn add eslint --dev
 ```
 
 - Iniciar o ESLint no projeto
