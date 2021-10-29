@@ -20,7 +20,7 @@ ghci> :t 4 == 5
 4 == 5 :: Bool  
 ```
 
-Here we see that doing :t on an expression prints out the expression followed by `::` and its type. 
+Here we see that doing `:t` on an expression prints out the expression followed by `::` and its type. 
 
 - **`::` is read as "has type of".**
 
@@ -48,7 +48,7 @@ If you want to give your function a type declaration but are unsure as to what i
 
 ### `Int`
 
-`Int` is bounded, which means that it has a minimum and a maximum value. Usually on 32-bit machines the maximum possible `Int` is 2147483647 and the minimum is -2147483648.
+`Int` is bounded, which means that it has a minimum and a maximum value. Usually on 32-bit machines the maximum possible `Int` is `2147483647` and the minimum is `-2147483648`.
 
 ### `Integer`
 
@@ -84,6 +84,10 @@ ghci> circumference' 4.0
 
 ## Typeclasses 
 
+A typeclass is a **sort of interface** that defines some behavior. If a type is a part of a typeclass, that means that it supports and implements the behavior the typeclass describes. A lot of people coming from OOP get confused by typeclasses because they think they are like classes in object oriented languages. Well, **they're not**. You can think of them kind of as Java interfaces, only better.
+
+What's the type signature of the `==` function?
+
 ```sh
 ghci> :t (==)  
 (==) :: (Eq a) => a -> a -> Bool  
@@ -93,6 +97,71 @@ Interesting. We see a new thing here, the `=>` symbol. Everything before the `=>
 We can read the previous type declaration like this: 
 
 > the equality function takes any two values that are of the same type and returns a Bool. The type of those two values must be a member of the `Eq` class (this was the class constraint)
+
+The `Eq` typeclass provides an interface for testing for equality. Any type where it makes sense to test for equality between two values of that type should be a member of the `Eq` class. 
+
+All standard Haskell types except for IO (the type for dealing with input and output) and functions are a part of the `Eq` typeclass.
+
+The `elem` function has a type of `(Eq a) => a -> [a] -> Bool` **because it uses `==` over a list to check whether some value we're looking for is in it**.
+
+### `Eq`
+
+`Eq` is used for types that support equality testing. 
+
+The functions its members implement are `==` and `/=`. So if there's an `Eq` class constraint for a type variable in a function, it uses `==` or `/=` somewhere inside its definition. All the types we mentioned previously except for functions are part of `Eq`, so they can be tested for equality.
+
+```sh
+ghci> 5 == 5  
+True 
+
+ghci> 5 /= 5  
+False
+
+ghci> 'a' == 'a'  
+True 
+
+ghci> "Ho Ho" == "Ho Ho"  
+True 
+
+ghci> 3.432 == 3.432  
+True 
+```
+
+### `Ord`
+
+`Ord` is for types that have an ordering.
+
+```sh
+ghci> :t (>)  
+(>) :: (Ord a) => a -> a -> Bool
+
+ghci> :t compare
+compare :: Ord a => a -> a -> Ordering
+```
+
+All the types we covered so far except for functions are part of `Ord`. `Ord` covers all the standard comparing functions such as `>`, `<`, `>=` and `<=`. 
+
+The `compare` function takes two `Ord` members of the same type and returns an ordering. 
+
+`Ordering` is a type that can be `GT`, `LT` or `EQ`, meaning greater than, lesser than and equal, respectively.
+
+To be a member of `Ord`, a type must first have membership in the prestigious and exclusive `Eq` club
+
+```sh
+ghci> "Abrakadabra" < "Zebra"  
+True 
+
+ghci> "Abrakadabra" `compare` "Zebra"  
+LT  
+
+ghci> 5 >= 2  
+True 
+
+ghci> 5 `compare` 3  
+GT  
+```
+
+### `Show`
 
 Members of `Show` can be presented as strings. All types covered so far except for functions are a part of `Show`. The most used function that deals with the `Show` typeclass is `show`. It takes a value whose type is a member of `Show` and presents it to us as a string.
 
@@ -149,7 +218,7 @@ Integral -> (Int, Integer)
 Floating -> (Float, Double)
 ```
 
-
+![haskell-typeclasses-chart](./media/haskell-typeclasses-chart.jpeg)
 
 
 
