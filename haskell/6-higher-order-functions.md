@@ -465,6 +465,8 @@ When using a `scanl`, the final result will be in the last element of the result
 
 ## Function application with $
 
+`($)` allows functions to be chained together without adding parentheses to control evaluation order:
+
 First of all, let's check out how it's defined:
 
 ```sh
@@ -505,6 +507,19 @@ f . g = \x -> f (g x)
 
 he expression `negate . (* 3)` returns a function that takes a number, multiplies it by 3 and then negates it.
 
+**The compose operator `(.)` creates a new function without specifying the arguments:**
+
+```sh
+ghci> let second x = head $ tail x
+ghci> second "asdf"
+'s'
+
+ghci> let second = head . tail
+ghci> second "asdf"
+'s'
+```
+
+
 
 ### Examples
 
@@ -534,6 +549,20 @@ ghci> map (\xs -> negate (sum (tail xs))) [[1..5],[3..6],[1..7]]
 ```sh
 ghci> map (negate . sum . tail) [[1..5],[3..6],[1..7]]  
 [-14,-15,-27] 
+```
+---
+#### 3.1 Using lambda functions
+
+```sh
+Prelude> map (\x -> head $ tail $ tail x) ["asdf", "qwer", "1234"]
+"de3"
+```
+
+#### 3.2 Using function composition
+
+```sh
+Prelude> map (head . tail . tail) ["asdf", "qwer", "1234"]
+"de3" 
 ```
 
 **The expression `f (g (z x))` is equivalent to `(f . g . z) x`**
