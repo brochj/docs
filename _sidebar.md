@@ -15,6 +15,7 @@
 
 - <strong>BACKEND</strong>
 - <strong>Docker</strong>
+  - [Container/Image Management](/backend/docker/container-images-management.md)
   - [Introdução](/backend/docker/introduction.md)
   - [Run NodeJs](/backend/docker/run-nodejs.md)
 - <strong>Databases</strong>
@@ -22,6 +23,9 @@
 - <strong>Expressjs</strong>
   - [Basic Routing](/backend/nodejs/expressjs/basic-routing.md)
   - [Serving Static files](/backend/nodejs/expressjs/serving-static-files.md)
+- <strong>SwaggerUI</strong>
+  - [Basic Routing](/backend/swagger/swagger-and-express.md)
+
 
 - <strong>Node.js</strong>
   - [Estrutura básica](/backend/nodejs/estrutura.md)
@@ -80,9 +84,11 @@
   - [5. Recursion](/haskell/5-recursion.md)
   - [6. Higher Order Functions](/haskell/6-higher-order-functions.md)
   - [7. Modules](/haskell/7-modules.md)
+  - [8. Modules](/haskell/8-making-our-own-types-and-typeclasses.md)
+  - [Good practices](/haskell/better-code.md)
   - Modules
   [Data.List](/haskell/modules/data.list.md)
 
 
 - <strong>GIT</strong>
-  - [Reactotron](/git/git-tricks.md)
+  - [Git basics](/git/git-tricks.md)

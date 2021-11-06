@@ -105,36 +105,7 @@ and you will able to see the swagger UI for documentation.
 
 ### Create the file `swagger.yaml`
 ```yaml
-export const swaggerDocument = {
-  openapi: '3.0.1',
-  info: {
-    version: '1.0.0',
-    title: 'APIs Document',
-    description: 'your description here',
-    termsOfService: '',
-    contact: {
-      name: 'Tran Son hoang',
-      email: 'son.hoang01@gmail.com',
-      url: 'https://hoangtran.co',
-    },
-    license: {
-      name: 'Apache 2.0',
-      url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
-    },
-  },
-  host: 'localhost:3000',
-  basePath: '/',
-  tags: [
-    {
-      name: 'Users',
-      description: 'API for users in the system',
-    },
-  ],
-  schemes: ['http'],
-  consumes: ['application/json'],
-  produces: ['application/json'],
-};
-
+TODO
 ```
 
 ### Add a new route
