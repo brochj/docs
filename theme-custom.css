@@ -1,26 +1,24 @@
 :root {
-    --theme-color: #196a65;
+  --theme-color: #196a65;
 
-    --sidebar-width                               : 20rem;
+  --sidebar-width: 20rem;
 
-    /* Name */
-    --sidebar-name-color: var(--theme-color);
-    --sidebar-name-font-size: var(--font-size-l);
-    --sidebar-name-font-weight: normal;
-    --sidebar-name-margin: 1.5rem 0 0;
-    --sidebar-name-padding: ;
-    --sidebar-name-text-align: center;
+  /* Name */
+  --sidebar-name-color: var(--theme-color);
+  --sidebar-name-font-size: var(--font-size-l);
+  --sidebar-name-font-weight: normal;
+  --sidebar-name-margin: 1.5rem 0 0;
+  --sidebar-name-padding: ;
+  --sidebar-name-text-align: center;
 
-    /* Nav Container */
-    --sidebar-nav-indent: 1.5em;
-    --sidebar-nav-margin: 0.5rem 0 0;
-    --sidebar-nav-padding: 0;
+  /* Nav Container */
+  --sidebar-nav-indent: 1.5em;
+  --sidebar-nav-margin: 0.5rem 0 0;
+  --sidebar-nav-padding: 0;
 
-    /* Nav Links */
-    --sidebar-nav-link-background-color--active: #196a65;
-    --sidebar-nav-link-color--active: #ffffff;
-    --sidebar-nav-link-padding: 0.25em 0.35em;
-    --sidebar-nav-link-border-radius: 4px;
-
-
+  /* Nav Links */
+  --sidebar-nav-link-background-color--active: #196a65;
+  --sidebar-nav-link-color--active: #ffffff;
+  --sidebar-nav-link-padding: 0.25em 0.35em;
+  --sidebar-nav-link-border-radius: 4px;
 }
