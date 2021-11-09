@@ -18,7 +18,9 @@
   - [Container/Image Management](/backend/docker/container-images-management.md)
   - [Introdução](/backend/docker/introduction.md)
   - [Run NodeJs](/backend/docker/run-nodejs.md)
-  - [Docker-compose](/backend/docker/docker-compose.md)
+- <strong>Docker-compose</strong>
+  - [Docker-compose](/backend/docker/docker-compose/docker-commands.md)
+  - [Example: 4 containers (nginx, nodejs, mongoDB)](/backend/docker/docker-compose/example-1.md)
 - <strong>Databases</strong>
   - [MongoDB](/backend/database/mongo/mongo-db.md)
 - <strong>Expressjs</strong>

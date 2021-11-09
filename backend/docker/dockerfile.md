@@ -5,12 +5,13 @@
 Table of Contents
 
 <!-- vscode-markdown-toc -->
-* [CMD](#CMD)
-* [ENTRYPOINT](#ENTRYPOINT)
-* [WORKDIR](#WORKDIR)
-* [CMD vs ENTRYPOINT](#CMDvsENTRYPOINT)
-	* [Using `ENTRYPOINT` or `CMD`](#UsingENTRYPOINTorCMD)
-	* [Using `CMD` & `ENTRYPOINT` instructions together](#UsingCMDENTRYPOINTinstructionstogether)
+
+- [CMD](#CMD)
+- [ENTRYPOINT](#ENTRYPOINT)
+- [WORKDIR](#WORKDIR)
+- [CMD vs ENTRYPOINT](#CMDvsENTRYPOINT)
+  - [Using `ENTRYPOINT` or `CMD`](#UsingENTRYPOINTorCMD)
+  - [Using `CMD` & `ENTRYPOINT` instructions together](#UsingCMDENTRYPOINTinstructionstogether)
 
 <!-- vscode-markdown-toc-config
 	numbering=false

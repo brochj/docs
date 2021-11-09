@@ -11,9 +11,8 @@
 - o `docker container prune` - remove todos os containers que estão parados.
 - o `docker rmi NOME_DA_IMAGEM` - remove a imagem passada como parâmetro.
 
-
-
 # Docker Create
+
 ```
 docker create [options] IMAGE
   -a, --attach               # attach stdout/err
@@ -30,17 +29,16 @@ docker create [options] IMAGE
 
 ## Inspecting The Container
 
-
 List all images that are locally stored with
 the Docker Engine
 
-```docker image ls```
+`docker image ls`
 
 # Run
 
-Run a container from the Alpine version 3.9 image, name the running container “web” and expose port 5000 externally, mapped to port 80 inside the container.  
+Run a container from the Alpine version 3.9 image, name the running container “web” and expose port 5000 externally, mapped to port 80 inside the container.
 
-```docker container run --name web -p 5000:80 alpine:3.9```
+`docker container run --name web -p 5000:80 alpine:3.9`
 
 # Usando Volumes para rodar código dentro de container
 
@@ -64,7 +62,6 @@ Tem que criar um arquivo chamado `Dockerfile` na pasta raiz do projeto (pode ser
 
 ### Exemplo para um site estático com node
 
-
 ```dockerfile
 FROM node:latest
 MAINTAINER Broch
@@ -79,7 +76,7 @@ EXPOSE $PORT
 
 - `ENV NODE_ENV=production` pode criar quantas variáveis de ambiente você quiser
 
-- `COPY . /var/www` copia toda a pasta do projeto para dentro `/var/www`  
+- `COPY . /var/www` copia toda a pasta do projeto para dentro `/var/www`
 
 - `WORKDIR /var/www` mudar de diretório
 
@@ -96,6 +93,7 @@ docker build -f Dockerfile -t brock/node .
 Depois dar um `docker images` para ver a imagem criada
 
 Depois para ver se o container ta funcionando
+
 ```sh
 docker run -d -p 8080:3000 brock/node
 ```
@@ -110,7 +108,7 @@ docker run -d -p 8080:3000 brock/node
 
 Agora você consegue compartilhar com outras pessoas essa imagem, ou você mesmo utilizar ela em outros dispositivos rodando o comando
 
-```docker pull <nome-da-imagem>```
+`docker pull <nome-da-imagem>`
 
 # Comunicação entre Containers
 
@@ -127,7 +125,8 @@ docker network create --driver bridge minha-rede
 
 ```sh
 docker network ls
-```  
+```
+
 Agora com a rede criada, vamos rodar um container utilizando a nossa rede
 
 ```sh
@@ -156,147 +155,4 @@ Podemos ver quais containers estão na rede com o comando
 docker network inspect minha-rede
 ```
 
-> OBS:  Subir primeiro o banco de dados e depois o site
-
-# Docker Compose
-
-Vamos fazer uma aplicação que tem um nginx (load balancer), que é quem vai receber as requesições e vai distribuir de forma balanceada para três containers nodejs, e esses três nodejs vão ter acesso a um banco mongo
-
-1. Criar uma pasta "docker"
-
-```sh
-├── docker
-│   ├── alura-books.dockerfile
-│   ├── config
-│   │   └── nginx.conf
-│   └── nginx.dockerfile
-
-```
-### alura-books.dockerfile
-
-```dockerfile
-FROM node:latest
-MAINTAINER Douglas Quintanilha
-ENV NODE_ENV=development
-COPY . /var/www
-WORKDIR /var/www
-RUN npm install 
-ENTRYPOINT ["npm", "start"]
-EXPOSE 3000
-
-```
-
-### nginx.dockerfile
-
-```dockerfile
-FROM nginx:latest
-MAINTAINER Douglas Quintanilha
-COPY /public /var/www/public
-COPY /docker/config/nginx.conf /etc/nginx/nginx.conf
-RUN chmod 755 -R /var/www/public
-EXPOSE 80 443
-ENTRYPOINT ["nginx"]
-# Parametros extras para o entrypoint
-CMD ["-g", "daemon off;"]
-```
-
-2. Criar no root do projeto o arquivo `docker-compose.yml`
-
-```yaml
-version: '3' # versão do compose
-services:  # cada service é um container
-    nginx: 
-        build: 
-            dockerfile: ./docker/nginx.dockerfile
-            context: .
-        image: brock/nginx # nome vou dar para a  imagem que vou buildar
-        container_name: nginx
-        ports:
-            - "80:80"
-        networks: 
-            - production-network
-        depends_on:
-            - "node1"
-            - "node2"
-            - "node3"
-
-    mongodb:
-        image: mongo # vou usar uma imagem padrão, não precisa buildar
-        networks: 
-            - production-network
-
-    node1:
-        build:
-            dockerfile: ./docker/alura-books.dockerfile
-            context: .  # caminho que vou utilizar durante o build
-        image: brock/alura-books
-        container_name: alura-books-1
-        ports:
-            - "3000"
-        networks:
-            - production-network
-        depends_on: # definindo a ordem que será criado os containers
-            - "mongodb" # node1 só start depois que mongodb estiver startado  
-
-    node2:
-        build:
-            dockerfile: ./docker/alura-books.dockerfile
-            context: .  # caminho que vou utilizar durante o build
-        image: brock/alura-books
-        container_name: alura-books-2
-        ports:
-            - "3000"
-        networks:
-            - production-network
-        depends_on: # definindo a ordem que será criado os containers
-            - "mongodb" #   node2 só start depois que mongodb estiver startado
-
-    node3:
-        build:
-            dockerfile: ./docker/alura-books.dockerfile
-            context: .  # caminho que vou utilizar durante o build
-        image: brock/alura-books
-        container_name: alura-books-3
-        ports:
-            - "3000"
-        networks:
-            - production-network
-        depends_on: # definindo a ordem que será criado os containers
-            - "mongodb" # node3 só start depois que mongodb estiver startado  
-
-networks:
-    production-network: # nome da minha network
-        driver: bridge
-
-```
-3. Comandos para subir os containers
-
-Na pasta onde esta o `docker-compose.ym` rodar o seguinte comando para buildar as imagens que são necessárias buildar
-
-```
-docker-compose build
-```
-
-Depois para subir os containers
-
-```
-docker-compose up
-```
-
-Também podemos usar o `-d` para liberar o terminal
-
-```
-docker-compose up -d
-
-```
-
-Para ver os containers
-
-`docker ps` ou `docker-compose ps`
-
-Para fechar os containers
-
-```
-docker-compose down
-
-```
+> OBS: Subir primeiro o banco de dados e depois o site
