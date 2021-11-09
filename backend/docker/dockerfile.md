@@ -2,7 +2,23 @@
 
 [Dockerfile Reference](https://docs.docker.com/engine/reference/builder)
 
-## CMD
+Table of Contents
+
+<!-- vscode-markdown-toc -->
+* [CMD](#CMD)
+* [ENTRYPOINT](#ENTRYPOINT)
+* [WORKDIR](#WORKDIR)
+* [CMD vs ENTRYPOINT](#CMDvsENTRYPOINT)
+	* [Using `ENTRYPOINT` or `CMD`](#UsingENTRYPOINTorCMD)
+	* [Using `CMD` & `ENTRYPOINT` instructions together](#UsingCMDENTRYPOINTinstructionstogether)
+
+<!-- vscode-markdown-toc-config
+	numbering=false
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+## <a name='CMD'></a>CMD
 
 [CMD - Dockerfile Reference](https://docs.docker.com/engine/reference/builder/#cmd)
 
@@ -18,7 +34,7 @@ The `CMD` instruction has three forms:
 
 **There can only be one `CMD` instruction in a `Dockerfile`**. If you list more than one `CMD` then only the last `CMD` will take effect.
 
-## ENTRYPOINT
+## <a name='ENTRYPOINT'></a>ENTRYPOINT
 
 [ENTRYPOINT - Dockerfile Reference](https://docs.docker.com/engine/reference/builder/#entrypoint)
 
@@ -27,7 +43,34 @@ ENTRYPOINT has two forms:
 - `ENTRYPOINT ["executable", "param1", "param2"]` (exec form, which is the preferred form)
 - `ENTRYPOINT command param1 param2 ` (shell form)
 
-# CMD vs ENTRYPOINT
+## <a name='WORKDIR'></a>WORKDIR
+
+`WORKDIR /path/to/workdir`
+
+The `WORKDIR` instruction sets the working directory for any `RUN`, `CMD`, `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the `Dockerfile`. If the `WORKDIR` doesn’t exist, it will be created even if it’s not used in any subsequent `Dockerfile` instruction.
+
+The `WORKDIR` instruction can be used multiple times in a `Dockerfile`. If a relative path is provided, it will be relative to the path of the previous `WORKDIR` instruction. For example:
+
+```dockerfile
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+RUN pwd
+```
+
+The output of the final `pwd` command in this `Dockerfile` would be `/a/b/c`.
+
+The `WORKDIR` instruction can resolve environment variables previously set using `ENV`. You can only use environment variables explicitly set in the `Dockerfile`. For example:
+
+```dockerfile
+ENV DIRPATH=/path
+WORKDIR $DIRPATH/$DIRNAME
+RUN pwd
+```
+
+The output of the final `pwd` command in this `Dockerfile` would be `/path/$DIRNAME`
+
+## <a name='CMDvsENTRYPOINT'></a>CMD vs ENTRYPOINT
 
 [cmd vs entrypoint](https://www.bmc.com/blogs/docker-cmd-vs-entrypoint/#)
 
@@ -37,7 +80,7 @@ They both specify programs that execute when the container starts running, but:
 
 - `ENTRYPOINT` instructions are not ignored but instead are appended as command line parameters by treating those as arguments of the command.
 
-## Using `ENTRYPOINT` or `CMD`
+### <a name='UsingENTRYPOINTorCMD'></a>Using `ENTRYPOINT` or `CMD`
 
 Both `ENTRYPOINT` and `CMD` are essential for building and running Dockerfiles—it simply depends on your use case. As a general rule of thumb:
 
@@ -46,7 +89,7 @@ Both `ENTRYPOINT` and `CMD` are essential for building and running Dockerfiles�
 
 - `CMD` instructions are best for an additional set of arguments that act as default instructions till there is an explicit command line usage when a Docker container runs.
 
-## Using `CMD` & `ENTRYPOINT` instructions together
+### <a name='UsingCMDENTRYPOINTinstructionstogether'></a>Using `CMD` & `ENTRYPOINT` instructions together
 
 While there are fundamental differences in their operations, CMD and ENTRYPOINT instructions are not mutually exclusive. Several scenarios may call for the use of their combined instructions in a Dockerfile.
 
