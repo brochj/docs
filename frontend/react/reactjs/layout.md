@@ -1,7 +1,9 @@
 # Layouts por página
+
 - Quando se tem páginas muitos parecidas, como uma tela de login e de cadastro, é interessante criar layouts
 
 ## Estrutura
+
 - Em pages criar a pasta `_layouts`
 
 ```
@@ -20,10 +22,10 @@
 - Os arquivos de layout terão esse formato
 
 ```js
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Wrapper } from './styles';
+import { Wrapper } from "./styles";
 
 export default function DefaultLayout({ children }) {
   return <Wrapper>{children}</Wrapper>;
@@ -39,12 +41,12 @@ DefaultLayout.propTypes = {
 - Em `routes/Route.js` podemos definir as condições de exibição do layout. Por exemplo, se o usuário estiver logado mostra um layout, se não mostra outro.
 
 ```js
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Route, Redirect } from "react-router-dom";
 
-import AuthLayout from '../pages/_layouts/auth';
-import DefaultLayout from '../pages/_layouts/default';
+import AuthLayout from "../pages/_layouts/auth";
+import DefaultLayout from "../pages/_layouts/default";
 
 export default function RouterWrapper({
   component: Component,
@@ -66,7 +68,7 @@ export default function RouterWrapper({
   return (
     <Route
       {...rest}
-      render={props => (
+      render={(props) => (
         <Layout>
           <Component {...props} />
         </Layout>
@@ -75,6 +77,5 @@ export default function RouterWrapper({
   );
   // Forma sem o layouts
   //return <Route {...rest} component={Component} />;
-
 }
 ```

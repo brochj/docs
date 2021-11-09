@@ -2,14 +2,16 @@
 
 Banco não relacional
 
-
 ## Criando um container
+
 - Criar um container no docker utilizando a imagem do mongoDB
 
 ```bash
 docker run --name mongomeetapp -p 27017:27017 -d -t mongo
 ```
+
 - Para verificar se está tudo certo entrar em `http://localhost:27017/` deve aparecer a msg
+
 ```
 It looks like you are trying to access MongoDB over HTTP on the native driver port.
 ```

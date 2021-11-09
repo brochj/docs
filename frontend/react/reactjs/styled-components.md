@@ -1,4 +1,5 @@
 # Styled Components
+
 ```bash
 yarn add styled-components
 ```
@@ -6,8 +7,9 @@ yarn add styled-components
 - instalar a extensão so styled components no vscode para ter o color highlight
 
 ### Criando um arquivo de estilização
+
 ```js
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Title = styled.h1`
   font-size: 24px;
@@ -21,10 +23,11 @@ export const Title = styled.h1`
 ```
 
 ### Utilizando um arquivo de estilização
-```js
-import React from 'react';
 
-import { Title } from './styles';
+```js
+import React from "react";
+
+import { Title } from "./styles";
 
 export default function Main() {
   return (
@@ -34,10 +37,10 @@ export default function Main() {
     </Title>
   );
 }
-
 ```
 
 ## Passando propriedades
+
 ```js
 ...
 export default function Main() {
@@ -63,11 +66,12 @@ export const Title = styled.h1`
 ```
 
 # Criando estilização global
+
 - Criar um arquivo em `src/styles/global.js`
 
 ```js
 //global.js
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   * {
@@ -107,17 +111,16 @@ export default createGlobalStyle`
     list-style: none
   }
 `;
-
 ```
 
 - Importar esse arquivo em `app.js`
 
 ```js
 //app.js
-import React from 'react';
+import React from "react";
 
-import Routes from './routes';
-import GlobalStyle from './styles/global';
+import Routes from "./routes";
+import GlobalStyle from "./styles/global";
 
 function App() {
   return (

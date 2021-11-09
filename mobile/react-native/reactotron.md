@@ -45,6 +45,6 @@ import "./config/ReactotronConfig";
 
 - Para utilizar é apenas um
 
-````js
+```js
 console.tron.log("Mensagem");
-````
+```

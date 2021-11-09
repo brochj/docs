@@ -39,7 +39,7 @@ import { combineReducers } from "redux";
 import cart from "./cart/reducer";
 
 export default combineReducers({
-  cart
+  cart,
 });
 ```
 
@@ -156,9 +156,7 @@ import { reactotronRedux } from "reactotron-redux";
 
 // Quando utiliza-se o create react app, ele adiciona essa variavel NODE_ENV quando inicia um `yarn start`
 if (process.env.NODE_ENV === "development") {
-  const tron = Reactotron.configure()
-    .use(reactotronRedux())
-    .connect();
+  const tron = Reactotron.configure().use(reactotronRedux()).connect();
 
   tron.clear();
 
@@ -217,20 +215,20 @@ import produce from "immer";
 export default function cart(state = [], action) {
   switch (action.type) {
     case "@cart/ADD":
-      return produce(state, draft => {
-        const productIndex = draft.findIndex(p => p.id === action.product.id);
+      return produce(state, (draft) => {
+        const productIndex = draft.findIndex((p) => p.id === action.product.id);
         if (productIndex >= 0) {
           draft[productIndex].amount += 1;
         } else {
           draft.push({
             ...action.product,
-            amount: 1
+            amount: 1,
           });
         }
       });
     case "@cart/REMOVE":
-      return produce(state, draft => {
-        const productIndex = draft.findIndex(p => p.id === action.id);
+      return produce(state, (draft) => {
+        const productIndex = draft.findIndex((p) => p.id === action.id);
 
         if (productIndex >= 0) {
           draft.splice(productIndex, 1);
@@ -251,14 +249,14 @@ export default function cart(state = [], action) {
 export function addToCart(product) {
   return {
     type: "@cart/ADD",
-    product
+    product,
   };
 }
 
 export function removeFromCart(id) {
   return {
     type: "@cart/REMOVE",
-    id
+    id,
   };
 }
 ```

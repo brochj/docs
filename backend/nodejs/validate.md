@@ -5,6 +5,7 @@ Esse tipo de validação é insteressante estar no frontend e também no backend
 ```bash
 yarn add yup
 ```
+
 - O Yup é uma lib de schema validation. É uma forma mais fácil de definir os campos que estão presentes, quais serão obrigatórios, quantidade minima de caracteres, etc.
 
 - No arquivo `UserController.js` dentro do método `store()`.
@@ -34,13 +35,11 @@ yarn add yup
     // if (!(await schema.isValid(req.body))) {
     //   return res.status(400).json({ error: 'Validations fails' });
     // }
-  
+
   ...
   }
 
 ```
-
-
 
 - No arquivo `UserController.js` dentro do método `update()`.
 
@@ -74,10 +73,11 @@ yarn add yup
 
 ```
 
-- `oneOf([Yup.ref('password')])` verifica se o campo `password` é igual ao campo `oldPassword`. 
+- `oneOf([Yup.ref('password')])` verifica se o campo `password` é igual ao campo `oldPassword`.
 - `oneOf([ ])` dentro desse array eu poderia passar outros valores. Mas como nesse caso é uma confirmação de senha, tem que ter apenas um.
 
 ## When() do Yup
+
 - O método `when()` serve para fazer uma validação condicional dentro do próprio objeto Yup criado.
 - O a funcao do segundo parâmetro só é executada se o campo do primeiro parâmetro foi preenchido.
 - `.when()` tem acesso à todos os outros campos do objeto Yup, no caso `name`,`email` e `oldPassword`
@@ -89,14 +89,16 @@ password: Yup.string().min(6)
           oldPassword ? field.required() : field
         ),
 ```
+
 - `field` se refere ao `password`. Pode-se ler da seguinte maneira. Se `oldPassword` existe, então `password` is required.
 - Na prática é algo assim que acontece:
 
 ```js
-oldPassword ? password.required() : password
+oldPassword ? password.required() : password;
 ```
 
 ## Verificando se está funcionando
+
 - Fazer uma request no Insomnia.
 
 - Tentando acessar rotas internas sem o token
@@ -118,4 +120,3 @@ oldPassword ? password.required() : password
 - Tentando criar conta/logar com senha fraca
 
 ![img](imgs/validate/pw.png)
-

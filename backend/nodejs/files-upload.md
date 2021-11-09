@@ -8,10 +8,10 @@
 2. É feita uma requisição e a foto é salva, pelo retorno da requisição vem o ID da foto salva no banco de dados;
 3. Armazena-se esse ID da foto no front-end;
 4. Quando o usuário termina de preencher seus dados como nome, email, etc. E envia os dados(segunda requisição), o Id da foto vai junto.
+
 - Fazendo dessa maneira, conseguimos manter a utilização do JSON, já que não é possível passar arquivos por JSON.
 
 - Outra maneira de fazer isso seria enviar tudo em uma requisição só. Mas não daria mais pra usar JSON.
-
 
 ## Configurando o multer
 
@@ -23,29 +23,29 @@ Para upload de arquivos, tem que usar a estrutura de multformpartdata
 - Dentro de `config` criar `multer.js`
 
 ```js
-  // Toda config de upload de arquivos
-  import multer from 'multer';
-  import crypto from 'crypto'; // do node
+// Toda config de upload de arquivos
+import multer from "multer";
+import crypto from "crypto"; // do node
 
-  import { extname, resolve } from 'path';
-  // extname , retira a extensao do arquivo
+import { extname, resolve } from "path";
+// extname , retira a extensao do arquivo
 
-  export default {
-    storage: multer.diskStorage({
-      destination: resolve(__dirname, '..', '..', 'tmp', 'uploads'),
-      filename: (req, file, callback) => {
-        // req, tem aquele mesmo conteudo dos controllers
-        // file - todos os dados do arquivo que o usuario fez upload
-        // gerar nome unico
-        crypto.randomBytes(16, (err, res) => {
-          if (err) return callback(err);
+export default {
+  storage: multer.diskStorage({
+    destination: resolve(__dirname, "..", "..", "tmp", "uploads"),
+    filename: (req, file, callback) => {
+      // req, tem aquele mesmo conteudo dos controllers
+      // file - todos os dados do arquivo que o usuario fez upload
+      // gerar nome unico
+      crypto.randomBytes(16, (err, res) => {
+        if (err) return callback(err);
 
-          // passo o null, pq o primeiro parametro é pra qndo da erro
-          return callback(null, res.toString('hex') + extname(file.originalname)); // transformo os 16 bytes em uma string hexadecimal
-        });
-      },
-    }),
-  };
+        // passo o null, pq o primeiro parametro é pra qndo da erro
+        return callback(null, res.toString("hex") + extname(file.originalname)); // transformo os 16 bytes em uma string hexadecimal
+      });
+    },
+  }),
+};
 ```
 
 - Para testar, ir em `routes.js`
@@ -74,14 +74,14 @@ routes.post('/files', upload.single('file'),(req, res) => {
 
 export default routes;
 
-``` 
+```
 
-- `single()` - um arquivo unico na requisicao, 
+- `single()` - um arquivo unico na requisicao,
 - `file` - nome do campo que vai ser enviado na requisicão.
 
 ## Verificando
 
--  No insomnia configurar um Request do tipo POST, e em vez de escolher o JSON, escolher o `Multipart Form` (Não esquecer de passar um token de autiticação, já que upload só será possível dentro da aplicação nesse caso.)
+- No insomnia configurar um Request do tipo POST, e em vez de escolher o JSON, escolher o `Multipart Form` (Não esquecer de passar um token de autiticação, já que upload só será possível dentro da aplicação nesse caso.)
 
 - No insomnia
 
@@ -110,7 +110,7 @@ export default routes;
 
 ## FileController
 
--  Criar um novo controller responsável pelo arquivos.
+- Criar um novo controller responsável pelo arquivos.
 
 ```js
 class FileController {
@@ -119,7 +119,6 @@ class FileController {
   }
 }
 export default new FileController();
-
 ```
 
 - Criar arquivo de tabela de no banco de dados
@@ -134,7 +133,7 @@ yarn sequelize migration:create --name=create-files
 module.exports = {
   up: (queryInterface, Sequelize) => {
     // up : 'e chamado ando a migrations eh executa
-    return queryInterface.createTable('files', {
+    return queryInterface.createTable("files", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -161,17 +160,18 @@ module.exports = {
     });
   },
 
-  down: queryInterface => {
-    return queryInterface.dropTable('files');
+  down: (queryInterface) => {
+    return queryInterface.dropTable("files");
   },
 };
-
 ```
+
 - Criar a tabela no banco de dados
 
 ```bash
 yarn sequelize db:migrate
 ```
+
 - Depois no Postbird deve aparecer a tabela.
 
 ![img](imgs/files-update/post-table.png)
@@ -180,48 +180,48 @@ yarn sequelize db:migrate
 - Criar um model file, usar como base o Model User
 
 ```js
-  import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from "sequelize";
 
-  class File extends Model {
-    static init(sequelize) {
-      super.init(
-        {
-          name: Sequelize.STRING,
-          path: Sequelize.STRING,
-        },
-        { sequelize }
-      );
+class File extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        name: Sequelize.STRING,
+        path: Sequelize.STRING,
+      },
+      { sequelize }
+    );
 
-      return this;
-    }
+    return this;
   }
-  export default File;
+}
+export default File;
 ```
 
 - Dentro do loader de model em `database/index.js` precisa importar esse Model File
-- E colocar dentro do array  `const models = [User, File];`
+- E colocar dentro do array `const models = [User, File];`
 
 - A partir desse momento é possivel fazer o import do Model File dentro do `FileController`.
 
 ```js
-  import File from '../models/File';
+import File from "../models/File";
 
-  class FileController {
-    async store(req, res) {
-      // originalName - Nome do arquivo que estava na maq do usuario
-      // filename - nome gerado aleatorio gerado pelo config/multer
-      const { originalname: name, filename: path } = req.file; // o multer que add esse file no req.
+class FileController {
+  async store(req, res) {
+    // originalName - Nome do arquivo que estava na maq do usuario
+    // filename - nome gerado aleatorio gerado pelo config/multer
+    const { originalname: name, filename: path } = req.file; // o multer que add esse file no req.
 
-      const file = await File.create({
-        name,
-        path,
-      });
+    const file = await File.create({
+      name,
+      path,
+    });
 
-      return res.json(file);
-    }
+    return res.json(file);
   }
+}
 
-  export default new FileController();
+export default new FileController();
 ```
 
 - No insomnia
@@ -234,7 +234,7 @@ yarn sequelize db:migrate
 
 ## Relacionamento de tabelas
 
--  Criar um novo campo na tabela de usuários, para isso tem que criar uma nova migration.
+- Criar um novo campo na tabela de usuários, para isso tem que criar uma nova migration.
 
 ```bash
 yarn sequelize migration:create --name=add-avatar-field-to-users
@@ -243,28 +243,28 @@ yarn sequelize migration:create --name=add-avatar-field-to-users
 - No arquivo da migration
 
 ```js
-  module.exports = {
-    up: (queryInterface, Sequelize) => {
-      return queryInterface.addColumn(
-        'users', // qual tabela
-        'avatar_id', // qual nome da coluna
-        {
-          type: Sequelize.INTEGER,
-          // Resumindo, todo avatar_id, tmbm vai ser um id contido na tabela files
-          references: { model: 'files', key: 'id' }, // foreign key
-          // Se o avatar_id (table users) for alterado, repassa a alteracao em id (table files)
-          onUpdate: 'CASCADE',
-          // Se o avatar_id (table users) for deletado, seta null no id (table files)
-          onDelete: 'SET NULL',
-          allowNull: true,
-        }
-      );
-    },
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.addColumn(
+      "users", // qual tabela
+      "avatar_id", // qual nome da coluna
+      {
+        type: Sequelize.INTEGER,
+        // Resumindo, todo avatar_id, tmbm vai ser um id contido na tabela files
+        references: { model: "files", key: "id" }, // foreign key
+        // Se o avatar_id (table users) for alterado, repassa a alteracao em id (table files)
+        onUpdate: "CASCADE",
+        // Se o avatar_id (table users) for deletado, seta null no id (table files)
+        onDelete: "SET NULL",
+        allowNull: true,
+      }
+    );
+  },
 
-    down: queryInterface => {
-      return queryInterface.removeColumn('users', 'avatar_id');
-    },
-  };
+  down: (queryInterface) => {
+    return queryInterface.removeColumn("users", "avatar_id");
+  },
+};
 ```
 
 - Adiciona a coluna no banco de dados
@@ -277,7 +277,7 @@ yarn sequelize db:migrate
 
 ## Método associate()
 
->(modulo 3 - Avatar do usuario - 9:23)
+> (modulo 3 - Avatar do usuario - 9:23)
 
 - Adicionar um coluna na tabela `users`, para fazer o relacionamento com a tabela `files`
 - Criando uma nova migration.
@@ -289,24 +289,24 @@ yarn sequelize migration:create --name=add-avatar-field-to-users
 ```js
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('users', 'avatar_id', {
+    return queryInterface.addColumn("users", "avatar_id", {
       type: Sequelize.INTEGER,
-      references: { model: 'files', key: 'id' },
-      ouUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
+      references: { model: "files", key: "id" },
+      ouUpdate: "CASCADE",
+      onDelete: "SET NULL",
       allowNull: true,
     });
   },
 
-  down: queryInterface => {
-    return queryInterface.removeColumn('users', 'avatar_id');
+  down: (queryInterface) => {
+    return queryInterface.removeColumn("users", "avatar_id");
   },
 };
 ```
+
 - Aplicar a migration. `yarn sequeliz db:migrate`
 
 - add o campo avatar_id na requisição (do insomnia) do Users/Update.
-
 
 - Para finalizar o relacionamento do model de User com o Model de File
 - Criar um método associate() dentro de `User.js`
@@ -321,13 +321,14 @@ static  associate(models) {
 
 ```js
 models
-  .map(model => model.init(this.connection))
-  .map(model => model.associate && model.associate(this.connection.models));
+  .map((model) => model.init(this.connection))
+  .map((model) => model.associate && model.associate(this.connection.models));
 ```
 
 - Fazer a requisicao no insomnia, o id da table files deve aprecer no avatar_id da table users.
 
 # Criando Rota para exibir arquivos.
+
 - No model `File.js` adiconar um campo virtual.
 
 ```js
@@ -354,5 +355,6 @@ url: {
     );
   }
 ```
+
 - `'/files'` é a rota q servirá os arquivos estaticos
--  `path.resolve(__dirname, '..', 'tmp', 'uploads')` é onde os arquivos estão salvos.
+- `path.resolve(__dirname, '..', 'tmp', 'uploads')` é onde os arquivos estão salvos.

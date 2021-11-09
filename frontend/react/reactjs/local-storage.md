@@ -1,5 +1,7 @@
-#  local storage
+# local storage
+
 ## Salvando dados
+
 ```js
 class TechList extends Component {
   state = {
@@ -15,6 +17,7 @@ class TechList extends Component {
 ```
 
 ## Lendo os dados
+
 ```js
 componentDidMount(){
     const techs = localStorage.getItem('techs');

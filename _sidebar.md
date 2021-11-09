@@ -27,8 +27,8 @@
   - [Basic Routing](/backend/nodejs/expressjs/basic-routing.md)
   - [Serving Static files](/backend/nodejs/expressjs/serving-static-files.md)
 - <strong>SwaggerUI</strong>
-  - [Basic Routing](/backend/swagger/swagger-and-express.md)
 
+  - [Basic Routing](/backend/swagger/swagger-and-express.md)
 
 - <strong>Node.js</strong>
   - [Estrutura básica](/backend/nodejs/estrutura.md)
@@ -75,12 +75,15 @@
 
 - <strong>MOBILE</strong>
 - <strong>React-Native</strong>
+
   - [Reactotron](/mobile/react-native/reactotron.md)
 
 - <strong>Python</strong>
+
   - [Basics](/python/basics.md)
 
 - <strong>Haskell</strong>
+
   - [2. Basics](/haskell/2-basics.md)
   - [3. Types and Typeclasses](/haskell/3-types-and-typeclasses.md)
   - [4. Syntax in functions](/haskell/4-syntax-in-functions.md)
@@ -90,8 +93,7 @@
   - [8. Modules](/haskell/8-making-our-own-types-and-typeclasses.md)
   - [Good practices](/haskell/better-code.md)
   - Modules
-  [Data.List](/haskell/modules/data.list.md)
-
+    [Data.List](/haskell/modules/data.list.md)
 
 - <strong>GIT</strong>
   - [Git basics](/git/git-tricks.md)

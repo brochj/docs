@@ -3,6 +3,7 @@
 ```bash
 yarn add dotenv
 ```
+
 - no `app.js` fazer o import do doenv na primeira linha do arquivo, fazendo isso ele vai pegar as infos de `.env` e guardar as variáveis em uma variável local q poderá ser aacessada por `process.env.NOME_DA_VARIAVEL`.
 
 ```js
@@ -11,6 +12,7 @@ import 'dotenv/config';
 ...
 ...
 ```
+
 - Como a queue roda em um processo paralelo, deve importar o `dotenv` lá tmbm.
 
 ```js
@@ -19,6 +21,7 @@ import 'dotenv/config';
 ...
 ...
 ```
+
 - Por último, importar em `config/database.js`
 
 ```js
@@ -47,6 +50,7 @@ DB_USER=postgres
 DB_PASS=docker
 DB_NAME=meetapp
 ```
+
 ## Criando env example
 
 Como o `.env` não vai para o github é interessante criar um arquivo chamado `.env.example` e copiar o `.env` para dentro, porém retirando todos os dados sensíveis. Assim, caso alguem baixe aquele projeto saberá quais variáveis tem que preencher.

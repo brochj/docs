@@ -21,11 +21,11 @@ backend
 
 ## `routes/`
 
-- This folder has all your routes which you are going to create. You connect your routes to your controllers here.  You can also add middlewares to your routes here. They are like your api routes. You need to import this routes in your server.js file inorder to use.
+- This folder has all your routes which you are going to create. You connect your routes to your controllers here. You can also add middlewares to your routes here. They are like your api routes. You need to import this routes in your server.js file inorder to use.
 
 ## `controllers/`
 
-- We don’t write the logic of route in the routes file we seperate them in seperate folder called controllers. We store each route controller in seperate file this makes your code look organised and managed. you need to import these controllers in your routes folder.  
+- We don’t write the logic of route in the routes file we seperate them in seperate folder called controllers. We store each route controller in seperate file this makes your code look organised and managed. you need to import these controllers in your routes folder.
 
 ## `middlewares/`
 
@@ -33,7 +33,7 @@ backend
 
 ## `models/`
 
-- This folder contains your database schema and models. You have to design the schema of the model and export  it and then you can use it to read and write to the database. You have to import it in controllers or middlewares.
+- This folder contains your database schema and models. You have to design the schema of the model and export it and then you can use it to read and write to the database. You have to import it in controllers or middlewares.
 
 ## `package.json`
 

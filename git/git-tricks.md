@@ -1,14 +1,15 @@
-
 Com o `-am` não precisa dar o `git add .` antes
 
 ```git
 git commit -am "that was easy"
 ```
+
 ## Configurar alias (para encurtar comandos)
 
 ```git
 git config --global alias.ac "commit -am"
 ```
+
 `ac` é novo alias para `commit -am`
 
 ```git
@@ -20,6 +21,7 @@ git ac "that was easy"
 ```git
 git commit --amend -m "nice"
 ```
+
 ## Commitou mas esqueceu de adicionar alguns arquivos
 
 ```git
@@ -30,6 +32,7 @@ git commit --amend --no-edit
 ## Git Stash
 
 Para salvar alterações sem comitá-las
+
 ```git
 git stash
 ```
@@ -57,6 +60,7 @@ git stash apply 0
 ```git
 
 ```
+
 ## Git squash
 
 ```git

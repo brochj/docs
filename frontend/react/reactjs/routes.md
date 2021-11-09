@@ -5,9 +5,10 @@ yarn add react-router-dom
 ```
 
 ## app.js
+
 ```js
-import React from 'react';
-import Routes from './routes';
+import React from "react";
+import Routes from "./routes";
 
 function App() {
   return <Routes />;
@@ -17,12 +18,13 @@ export default App;
 ```
 
 ## routes.js
-```js
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Main from './pages/Main';
-import Repository from './pages/Repository';
+```js
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import Main from "./pages/Main";
+import Repository from "./pages/Repository";
 
 // Switch garante que uma unica rota seja exibida por vez
 export default function Routes() {
@@ -40,6 +42,7 @@ export default function Routes() {
 # Configurando rotas com history
 
 ## Estrutura
+
 ```
 ├── src
 │   ├── App.js
@@ -60,6 +63,7 @@ export default function Routes() {
 ```
 
 ## Dependências
+
 ```bash
 yarn add history react-router-dom
 ```
@@ -68,21 +72,22 @@ yarn add history react-router-dom
 
 ```js
 // history.js
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
 export default history;
 ```
+
 ## routes/index.js
 
 ```js
 // routes/index.js
-import React from 'react';
-import { Router } from 'react-router-dom';
+import React from "react";
+import { Router } from "react-router-dom";
 
-import Routes from './routes';
-import history from './services/history';
+import Routes from "./routes";
+import history from "./services/history";
 
 export default function src() {
   return (
@@ -97,11 +102,11 @@ export default function src() {
 
 ```js
 // app.js
-import React from 'react';
-import { Router } from 'react-router-dom';
+import React from "react";
+import { Router } from "react-router-dom";
 
-import Routes from './routes';
-import history from './services/history';
+import Routes from "./routes";
+import history from "./services/history";
 
 export default function src() {
   return (
@@ -111,4 +116,3 @@ export default function src() {
   );
 }
 ```
-

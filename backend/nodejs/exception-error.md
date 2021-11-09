@@ -1,10 +1,12 @@
 # Tratamento de excecoes
 
 Exemplo de ferramentas
+
 - Sentry
 - Bugsnag
 
 ## Utilizando o sentry
+
 - ir no [site](https://sentry.io/) do sentry e criar um novo projeto.
 
 ```bash
@@ -12,15 +14,21 @@ yarn add @sentry/node@5.6.2
 ```
 
 - Por padrão o express não detecta erros assícronos
+
 ```bash
 yarn add express-async-errors
 ```
+
 ## Youch
-- Para formatar as  msgs de erro. Ele transforma o msg de erro em Json ou Html.
+
+- Para formatar as msgs de erro. Ele transforma o msg de erro em Json ou Html.
+
 ```bash
 yarn add youch
 ```
-- Exemplo: 
+
+- Exemplo:
+
 ```json
 {
   "error": {
@@ -47,26 +55,27 @@ yarn add youch
 ## Configurando o sentry
 
 - criar uma `config/sentry.js` e adicionar o dsn fornecido no projeto do sentry.
+
 ```js
 export default {
-  dsn: 'https://ab849cb558af4b36a3e608e37db41cd2@sentry.io/1545899',
+  dsn: "https://ab849cb558af4b36a3e608e37db41cd2@sentry.io/1545899",
 };
 ```
 
 - No `app.js`
 
-> OBS: `import 'express-async-errors';` TEM que ser importados antes das rotas!!. 
+> OBS: `import 'express-async-errors';` TEM que ser importados antes das rotas!!.
 
 ```js
-import express from 'express';
-import 'express-async-errors';
-import Youch from 'youch';
-import * as Sentry from '@sentry/node';
+import express from "express";
+import "express-async-errors";
+import Youch from "youch";
+import * as Sentry from "@sentry/node";
 
-import sentryConfig from './config/sentry';
-import routes from './routes';
+import sentryConfig from "./config/sentry";
+import routes from "./routes";
 
-import './database';
+import "./database";
 
 class App {
   constructor() {
@@ -101,5 +110,4 @@ class App {
 }
 
 export default new App().server;
-
 ```

@@ -1,12 +1,14 @@
 # Rotas Privadas
+
 Para ter controle das rotas privadas vamos criar um componente próprio chamado `Route`.
+
 - Em `src/routes/Route.js`
 
 ```js
 // src/routes/Route.js
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Route, Redirect } from "react-router-dom";
 
 export default function RouterWrapper({
   component: Component,
@@ -41,15 +43,15 @@ RouterWrapper.defaultProps = {
 - Como foi criado a prop `isPrivate`, podemos definir quais rotas serão privadas passando apenas essa prop.
 
 ```js
-import React from 'react';
-import { Switch } from 'react-router-dom';
-import Route from './Route';
+import React from "react";
+import { Switch } from "react-router-dom";
+import Route from "./Route";
 
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
 
-import Dashboard from '../pages/Dashboard';
-import Profile from '../pages/Profile';
+import Dashboard from "../pages/Dashboard";
+import Profile from "../pages/Profile";
 
 export default function Routes() {
   return (

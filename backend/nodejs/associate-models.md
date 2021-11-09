@@ -1,7 +1,7 @@
-
 # Relacionamento de Models
 
 ## No Model User
+
 - Criar uma metodo
 
 ```js
@@ -24,6 +24,7 @@
       .map(model => model.associate && model.associate(this.connection.models));
   ...
 ```
+
 - esse map só roda se o Model tiver o método associate dentro. essa verificação é feita por `model.associate &&`
 
 - Fazer a requisicao no insomnia, o id da table files deve aprecer no avatar_id da table users.

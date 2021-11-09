@@ -12,7 +12,7 @@ docker images
 docker rmi <image-name>
 ```
 
-## Remove multiple images 
+## Remove multiple images
 
 ```sh
 docker rmi <your-image-id1> <your-image-id2> ...
@@ -24,12 +24,13 @@ docker rmi <your-image-id1> <your-image-id2> ...
 docker rmi $(docker images -q)
 ```
 
-- `-q ` is a option is used to provide to return the unique IDs. 
+- `-q ` is a option is used to provide to return the unique IDs.
 - `-q ` the quiet option to provide only container numeric IDs, rather than a whole table of information about container
 
 # Containers
 
-## Remove container 
+## Remove container
+
 `docker rm` removes containers by their **name** or **ID**.
 
 When you have Docker containers running, you first need to stop them before deleting them.

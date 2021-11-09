@@ -1,6 +1,7 @@
 ## Virtual env
 
 1. Criar o ambiente virtual
+
 ```sh
 python -m venv .venv
 ```

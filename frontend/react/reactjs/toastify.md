@@ -1,6 +1,5 @@
-
-
 # React Tostify
+
 ```bash
 yarn add react-toastify
 ```
@@ -26,16 +25,17 @@ function App() {
 ```
 
 ### Nos estilos globais `global.js`
+
 ```js
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 ```
 
 ### Utilizando
 
 ```js
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function foo() {
-    toast.error('Some error');
+  toast.error("Some error");
 }
 ```

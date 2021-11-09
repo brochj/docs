@@ -1,6 +1,6 @@
 # Run Nodejs using Docker
 
-First create a `.dockerignore`  file in the same directory as your `.dockerfile` with following content:
+First create a `.dockerignore` file in the same directory as your `.dockerfile` with following content:
 
 ```sh
 node_modules
@@ -8,6 +8,7 @@ npm-debug.log
 ```
 
 ## Example 1
+
 Create a Dockerfile
 
 ```dockerfile
@@ -64,6 +65,7 @@ docker build -f <arquivo-dockerfile> -t <nome-da-imagem> <pasta-onde-esta-projet
 # example
 docker build -f nodeapi.dockerfile -t brock/nodeapi .
 ```
+
 Run the container
 
 ```sh

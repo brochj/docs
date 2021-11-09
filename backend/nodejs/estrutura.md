@@ -1,13 +1,17 @@
 # Estrutura inicial
 
 ## Pasta raiz
+
 - Dentro da pasta raiz iniciar o `yarn`.
+
 ```bash
 yarn init -y
 ```
 
 ## Pastas e arquivos iniciais
+
 - Dentro da pasta raiz
+
 ```
 projeto
       ├── package.json
@@ -19,9 +23,10 @@ projeto
 ```
 
 ### app.js
+
 ```js
-import express from 'express';
-import routes from './routes';
+import express from "express";
+import routes from "./routes";
 
 class App {
   constructor() {
@@ -43,30 +48,34 @@ export default new App().server;
 ```
 
 ### server.js
+
 ```js
-import app from './app';
+import app from "./app";
 
 app.listen(3333);
 ```
 
 ### routes.js
+
 ```js
-import { Router } from 'express';
+import { Router } from "express";
 
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  return res.json({msg: 'hello World'});
+routes.get("/", (req, res) => {
+  return res.json({ msg: "hello World" });
 });
 
 export default routes;
 ```
 
 ## Iniciar o GIT
-- Iniciar o GIT com `git init` e criar o arquivo `.gitignore` com `node_modules/` 
-dentro.
+
+- Iniciar o GIT com `git init` e criar o arquivo `.gitignore` com `node_modules/`
+  dentro.
 
 ## Adicionar o Express
+
 ```bash
 yarn add express
 ```
@@ -80,6 +89,7 @@ yarn add sucrase nodemon --dev
 ```
 
 - package.json
+
 ```json
 "scripts": {
     "dev": "nodemon src/server.js"
@@ -87,6 +97,7 @@ yarn add sucrase nodemon --dev
 ```
 
 - Na raiz do projeto criar um arquivo `nodemon.json` e adicionar:
+
 ```json
 {
   "execMap": {
@@ -96,56 +107,61 @@ yarn add sucrase nodemon --dev
 ```
 
 ## Rodar `yarn dev`
-- Em `http://localhost:3333` deve aparecer o **Hello world**.
 
+- Em `http://localhost:3333` deve aparecer o **Hello world**.
 
 ## ESLint & Prettier
 
 ### ESLint
+
 - Instalar o ESLint com dependência de desenvolvimento.
+
 ```bash
 yarn add eslint -D
 yarn add eslint --dev
 ```
 
 - Iniciar o ESLint no projeto
+
 ```bash
 yarn eslint --init
 ```
 
-- Configurar dessa maneira 
-```bash 
-  ? How would you like to use ESLint? 
+- Configurar dessa maneira
+
+```bash
+  ? How would you like to use ESLint?
   To check syntax, find problems, and enforce code style
 
-  ? What type of modules does your project use? 
+  ? What type of modules does your project use?
   JavaScript modules (import/export)
 
-  ? Which framework does your project use? 
+  ? Which framework does your project use?
   None of these
 
-  ? Where does your code run? 
+  ? Where does your code run?
   Node
 
-  ? How would you like to define a style for your project? 
+  ? How would you like to define a style for your project?
   Use a popular style guide
 
-  ? Which style guide do you want to follow? 
+  ? Which style guide do you want to follow?
   Airbnb (https://github.com/airbnb/javascript)
 
-  ? What format do you want your config file to be in? 
+  ? What format do you want your config file to be in?
   JavaScript
 
-  ? Would you like to install them now with npm? 
+  ? Would you like to install them now with npm?
   Yes
 ```
 
 - Como a instalação é feita pelo `npm`, apagar o arquivo package-lock.json e rodar
- os comando `yarn` para refazer a instalação utilizando o Yarn.
+  os comando `yarn` para refazer a instalação utilizando o Yarn.
 
 - Instalar a extensão `ESLint` no VSCode
 
-- Nas settings do VSCode (JSON) adicionar:  
+- Nas settings do VSCode (JSON) adicionar:
+
 ```json
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
@@ -165,47 +181,48 @@ yarn eslint --init
           "language": "typescriptreact",
           "autoFix": true
       }
-      
+
   ],
 ```
 
-- Dentro do arquivo `.eslintrc.js` deixar da seguinte forma:  
+- Dentro do arquivo `.eslintrc.js` deixar da seguinte forma:
+
 ```js
-  module.exports = {
-    env: {
-      es6: true,
-      node: true,
-    },
-    extends: [
-      'airbnb-base', 'prettier'
-    ],
-    plugins: ['prettier'],
-    globals: {
-      Atomics: 'readonly',
-      SharedArrayBuffer: 'readonly',
-    },
-    parserOptions: {
-      ecmaVersion: 2018,
-      sourceType: 'module',
-    },
-    rules: {
-      "prettier/prettier": "error",
-      "class-methods-use-this": "off",
-      "no-param-reassign": "off",
-      "camelcase":"off",
-      "no-unused-vars": ["error",{"argsIgnorePattern":"next"}]
-    },
-  };
+module.exports = {
+  env: {
+    es6: true,
+    node: true,
+  },
+  extends: ["airbnb-base", "prettier"],
+  plugins: ["prettier"],
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: "module",
+  },
+  rules: {
+    "prettier/prettier": "error",
+    "class-methods-use-this": "off",
+    "no-param-reassign": "off",
+    camelcase: "off",
+    "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
+  },
+};
 ```
 
 ### Prettier
 
 - Instalar o Prettier como dependência de desenvolvimento
+
 ```bash
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
 - Criar um arquivo `.prettierrc` na raiz e adicionar
+
 ```json
 {
   "singleQuote": true,
@@ -214,13 +231,15 @@ yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
 - Após isso, o ESLint e Prettier já devem estar funcionando, caso não esteja, dar
- um `reload window` no `VSCode`.  
+  um `reload window` no `VSCode`.
 
 ### EditorConfig
+
 - Instalar a extensão do VSCode `EditorConfig for VS Code`
-- No VSCodr, ir na raiz do projeto clicar com o botão direito em selecionar 
-`Generate .editorconfig`
+- No VSCodr, ir na raiz do projeto clicar com o botão direito em selecionar
+  `Generate .editorconfig`
 - Dentro de `.editorconfig` deixar da seguinte maneira
+
 ```
   root = true
 
@@ -233,8 +252,9 @@ yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
 ### Dica ESLint
+
 - Para arrumar todos os arquivos de uma vez, rodar o comando:
+
 ```bash
 yarn eslint --fix src --ext .js
 ```
-

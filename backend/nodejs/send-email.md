@@ -3,6 +3,7 @@
 ## Configurando o Nodemailer
 
 - instalar o nodemailer
+
 ```bash
 yarn add nodemailer
 ```
@@ -11,33 +12,33 @@ yarn add nodemailer
 
 ```js
 export default {
-  host: '',
-  port: '',
+  host: "",
+  port: "",
   secure: false,
   auth: {
-    user: '',
-    pass: ''
+    user: "",
+    pass: "",
   },
   default: {
-    from: 'Equipe MeetApp <noreply@meetapp.com>',   
-  }
-}
+    from: "Equipe MeetApp <noreply@meetapp.com>",
+  },
+};
 ```
 
-- Procurar por um servico de envio de email. exemplos: 
-  - Amazon SES, 
+- Procurar por um servico de envio de email. exemplos:
+
+  - Amazon SES,
   - Mailgun
   - Sparkpost
   - Mandril (soh pode ser utilizado por quem usa o mailchimp)
   - Gmail (nao utilizar o pq tem um limite baixo)
   - Mailtrap (soh funciona em ambiente de desenvolvimento)
 
-
 - Criar pasta `src/lib/Mail.js`. Essa pasta lib vai guardar todos os sevicos externos a aplicacao
 
 ```js
-import nodemailer from 'nodemailer';
-import mailConfig from '../config/mail';
+import nodemailer from "nodemailer";
+import mailConfig from "../config/mail";
 
 class Mail {
   constructor() {
@@ -79,10 +80,12 @@ await Mail.sendMail({
 # Templates de email
 
 ## Configurando
+
 - Necessário instalar duas libs para poder utilizar o template engine no node.
 - template engine são basicamente arquivos html que podem receber variáveis do node. (tem muito mais funcionalidade)
 - O template engine utilizado será o `handlebars` (tem muitos outros)
 - Instalar
+
 ```bash
 yarn add express-handlebars nodemailer-express-handlebars
 ```
@@ -103,15 +106,17 @@ app
 ```
 
 ## Configurando Mail.js
+
 - Em `src/lib/Mail.js`
 
 - importar as duas lib instaladas
+
 ```js
-import nodemailer from 'nodemailer';
-import { resolve } from 'path';
-import exphbs from 'express-handlebars';
-import nodemailerhbs from 'nodemailer-express-handlebars';
-import mailConfig from '../config/mail';
+import nodemailer from "nodemailer";
+import { resolve } from "path";
+import exphbs from "express-handlebars";
+import nodemailerhbs from "nodemailer-express-handlebars";
+import mailConfig from "../config/mail";
 
 class Mail {
   constructor() {
@@ -128,19 +133,19 @@ class Mail {
   }
 
   configureTemplates() {
-    const viewPath = resolve(__dirname, '..', 'app', 'views', 'emails');
+    const viewPath = resolve(__dirname, "..", "app", "views", "emails");
 
     this.transporter.use(
-      'compile',
+      "compile",
       nodemailerhbs({
         viewEngine: exphbs.create({
-          layoutsDir: resolve(viewPath, 'layouts'),
-          partialsDir: resolve(viewPath, 'partials'),
-          defaultLayout: 'default',
-          extname: '.hbs',
+          layoutsDir: resolve(viewPath, "layouts"),
+          partialsDir: resolve(viewPath, "partials"),
+          defaultLayout: "default",
+          extname: ".hbs",
         }),
         viewPath,
-        extName: '.hbs',
+        extName: ".hbs",
       })
     );
   }
@@ -160,32 +165,36 @@ export default new Mail();
 
 - Partials são como components, são arquivos que podem ser importados para dentro de layouts ou templates. Exemplo um footer, header, etc. Algo que se repete em diferentes tipos de emails.
 - criar em `partials/footer.hbs`
+
 ```html
 <br />
 Equipe MeetApp
 ```
 
 ## Configurando o Layout
+
 - `layouts/default.hbs` é o layout que será utilizado em todos os envios de email.
 - Dentro do arquivo `default.hbs`
+
 ```html
 <div
-style="font-family: Arial, Helvetica, sans-serif;
+  style="font-family: Arial, Helvetica, sans-serif;
 font-size:16px;
 line-height: 1.6;
 color: #222;
 max-width: 600px;
 "
 >
-{{{ body }}}
-{{> footer}}
+  {{{ body }}} {{> footer}}
 </div>
-
 ```
-- O {{{body}}} vai ser substituido pelo `subscription.hbs` 
+
+- O {{{body}}} vai ser substituido pelo `subscription.hbs`
 
 ## Criando o template
+
 - dentro do `emails/subscription.hbs`
+
 ```html
 <strong> Olá, {{ meetupCreator }}</strong>
 
@@ -198,18 +207,20 @@ max-width: 600px;
 ```
 
 ## Usando os templates
+
 - Voltar no controller e alterar o método `sendMail()`
 
 ```js
- await Mail.sendMail({
-      to: `${meetup.user.name} <${meetup.user.email}>`,
-      subject: `Nova inscrição em ${meetup.title}`,
-      template: 'subscription',
-      context: {
-        meetupCreator: meetup.user.name,
-        meetup_title: meetup.title,
-        user: user.name,
-      },
-    });
+await Mail.sendMail({
+  to: `${meetup.user.name} <${meetup.user.email}>`,
+  subject: `Nova inscrição em ${meetup.title}`,
+  template: "subscription",
+  context: {
+    meetupCreator: meetup.user.name,
+    meetup_title: meetup.title,
+    user: user.name,
+  },
+});
 ```
+
 - `context` : Tem receber todas as variáveis que foram utilizadas dentro do template `subscription.hbs`

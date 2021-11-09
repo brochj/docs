@@ -1,4 +1,3 @@
-
 # Redux Saga
 
 ```bash
@@ -6,6 +5,7 @@ yarn add redux-saga
 ```
 
 - O Saga vai funcionar como um middleware. O fluxo será o seguinte:
+
 1. O usuário dispara uma action que está sendo ouvida pelo saga em `store/modules/cart/sagas.js` (exemplo)
 2. A action do saga faz o que precisa fazer, tipo um requisição.
 3. Quando termina a action do saga, o próprio saga dispara uma action
@@ -19,8 +19,11 @@ dispara a action 1 -> Reducer
 // Com Redux-saga
 dispara a action -> (action-saga executada) -> dispara action 1 -> Reducer
 ```
+
 ### Exemplo
+
 #### Actions
+
 - Como agora tem uma action a mais, mudar no arquivo `store/modules/cart/actions.js`
 
 ```js
@@ -33,6 +36,7 @@ export function addToCartRequest(product) {
 }
 ...
 ```
+
 Para
 
 ```js
@@ -56,7 +60,9 @@ export function addToCartSuccess(product) {
 - `addToCartSuccess()` é a action disparada pelo redux-saga e ouvida pelo reducer
 
 #### Reducer
+
 - No reducer mudar o tipo de action que está sendo ouvida, no caso de `@cart/ADD` para `@cart/ADD_SUCCESS`
+
 ```js
 ...
 switch (action.type) {
@@ -66,13 +72,14 @@ switch (action.type) {
 ```
 
 #### Sagas
+
 - Em `store/modules/cart/sagas.js`
 
 ```js
-import { call, put, all, takeLatest } from 'redux-saga/effects';
-import api from '../../../services/api';
+import { call, put, all, takeLatest } from "redux-saga/effects";
+import api from "../../../services/api";
 
-import { addToCartSuccess } from './actions';
+import { addToCartSuccess } from "./actions";
 
 function* addToCart({ id }) {
   const response = yield call(api.get, `/products/${id}`);
@@ -82,16 +89,17 @@ function* addToCart({ id }) {
 }
 
 // all é pra ficar ouvindo as actions
-export default all([takeLatest('@cart/ADD_REQUEST', addToCart)]);
+export default all([takeLatest("@cart/ADD_REQUEST", addToCart)]);
 ```
 
 #### rootSaga
+
 - Fazer o load de todos os sagas `store/modules/rootSaga.js`
 
 ```js
-import { all } from 'redux-saga/effects';
+import { all } from "redux-saga/effects";
 
-import cart from './cart/sagas';
+import cart from "./cart/sagas";
 
 export default function* rootSaga() {
   return yield all([cart]);
@@ -99,23 +107,21 @@ export default function* rootSaga() {
 ```
 
 #### Carregando o redux-saga
+
 - Em `store/index.js` fazer a configuração do redux-saga
 
 ```js
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
 
-import rootReducer from './modules/rootReducer';
-import rootSaga from './modules/rootSaga';
+import rootReducer from "./modules/rootReducer";
+import rootSaga from "./modules/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const enhancer =
-  process.env.NODE_ENV === 'development'
-    ? compose(
-        console.tron.createEnhancer(),
-        applyMiddleware(sagaMiddleware)
-      )
+  process.env.NODE_ENV === "development"
+    ? compose(console.tron.createEnhancer(), applyMiddleware(sagaMiddleware))
     : applyMiddleware(sagaMiddleware);
 
 const store = createStore(rootReducer, enhancer);
@@ -126,6 +132,7 @@ export default store;
 ```
 
 ## Reactotron + Saga
+
 ```bash
 yarn add reactotron-redux-saga
 ```
@@ -133,11 +140,11 @@ yarn add reactotron-redux-saga
 ### Configurando o Reactotron
 
 ```js
-import Reactotron from 'reactotron-react-js';
-import { reactotronRedux } from 'reactotron-redux';
-import reactotronSaga from 'reactotron-redux-saga';
+import Reactotron from "reactotron-react-js";
+import { reactotronRedux } from "reactotron-redux";
+import reactotronSaga from "reactotron-redux-saga";
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   const tron = Reactotron.configure()
     .use(reactotronRedux())
     .use(reactotronSaga())
@@ -150,7 +157,8 @@ if (process.env.NODE_ENV === 'development') {
 ```
 
 ### Criando o saga monitor
-- Em `store/index.js`  fazer as alterações
+
+- Em `store/index.js` fazer as alterações
 
 ```js
 ...
@@ -166,18 +174,21 @@ const sagaMiddleware = createSagaMiddleware({
 ```
 
 ## Navegação com Redux-saga
+
 ```bash
 yarn add history
 ```
+
 - Em `services/history.js`
 
 ```js
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
 
 export default history;
 ```
+
 - Em `app.js` mudar de `BrowserRouter` para `Router` e adicionar o history como propriedade
 
 ```js
@@ -201,7 +212,9 @@ function App() {
 }
 export default App;
 ```
+
 ## Utilizando o history
+
 - A navegação só será feita depois que terminar a chamada a api.
 - Em algum arquivo `sagas.js`
 
@@ -216,4 +229,3 @@ function* addToCart() {
   }
 }
 ```
-
