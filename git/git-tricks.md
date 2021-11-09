@@ -1,28 +1,28 @@
 
 Com o `-am` não precisa dar o `git add .` antes
 
-```sh
+```git
 git commit -am "that was easy"
 ```
 ## Configurar alias (para encurtar comandos)
 
-```sh
+```git
 git config --global alias.ac "commit -am"
 ```
 `ac` é novo alias para `commit -am`
 
-```sh
+```git
 git ac "that was easy"
 ```
 
 ## Change message of last commit
 
-```sh
+```git
 git commit --amend -m "nice"
 ```
 ## Commitou mas esqueceu de adicionar alguns arquivos
 
-```sh
+```git
 git add .
 git commit --amend --no-edit
 ```
@@ -30,23 +30,23 @@ git commit --amend --no-edit
 ## Git Stash
 
 Para salvar alterações sem comitá-las
-```sh
+```git
 git stash
 ```
 
 Salvando com um nove especifico
 
-```sh
+```git
 git stash save coolstuff
 ```
 
 Trazer as alterações de volta
 
-```sh
+```git
 git pop
 ```
 
-```sh
+```git
 git stash list
 git stash apply <index>
 git stash apply 0
@@ -54,51 +54,51 @@ git stash apply 0
 
 ## Git bisect
 
-```sh
+```git
 
 ```
 ## Git squash
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```
 
-```sh
+```git
 
 ```

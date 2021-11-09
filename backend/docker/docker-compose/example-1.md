@@ -1,5 +1,4 @@
-# Docker Compose
-## Exemplo 4 containers
+# Exemplo 4 containers
 
 Vamos fazer uma aplicação que tem um `nginx` (load balancer), que é quem vai receber as requesições e vai distribuir de forma balanceada para três containers `nodejs`, e esses três `nodejs` vão ter acesso a um banco `mongo`
 
