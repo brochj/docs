@@ -15,7 +15,7 @@
 
 - <strong>BACKEND</strong>
 - <strong>Docker</strong>
-  - [Container/Image Management](/backend/docker/container-images-management.md)
+  - [Commands](/backend/docker/commands.md)
   - [Introdução](/backend/docker/introduction.md)
   - [Run NodeJs](/backend/docker/run-nodejs.md)
 - <strong>Docker-compose</strong>
