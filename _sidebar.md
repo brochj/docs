@@ -17,6 +17,7 @@
 - <strong>Docker</strong>
   - [Commands](/backend/docker/commands.md)
   - [Introdução](/backend/docker/introduction.md)
+  - [Volumes](/backend/docker/volumes.md)
   - [Run NodeJs](/backend/docker/run-nodejs.md)
 - <strong>Docker-compose</strong>
   - [Docker-compose](/backend/docker/docker-compose/docker-commands.md)
@@ -97,3 +98,4 @@
 
 - <strong>GIT</strong>
   - [Git basics](/git/git-tricks.md)
+  - [Git two accounts](/git/github-snd-account.md)

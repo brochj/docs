@@ -50,8 +50,11 @@ Volumes são pastas dentro do container que estão "linkadas" com um pasta fora 
 # sintaxe
 docker run -d -p <porta-host>:<porta-container> -v "<pasta-fora-do-container>:<pasta-dentro-do-container>" -w "<pasta-dentro-do-container>" <imagem> <comando simples>
 
+# example 1
 docker run -d -p 8080:3000 -v "/pj/meu-dados:/var/www" -w "/var/www" node npm start
 
+# example 2
+docker run -it --name freeconhecimento --entrypoint=bash  -v "$(pwd):/home/" -w "/home/" ubuntu
 ```
 
 flag `-d` é para executar o `detach`, para não ficar com o terminal "ocupado" pela aplicação
