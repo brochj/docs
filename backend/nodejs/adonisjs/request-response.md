@@ -7,7 +7,7 @@
 Controller
 
 ```js
-async index ({ request }){ 
+async index ({ request }){
   return {
     response: "index do Painel",
     qs: request.qs(),
@@ -49,15 +49,8 @@ Resposta
     "nome": "joao"
   },
   "ip": "127.0.0.1",
-  "ips": [
-    "127.0.0.1"
-  ],
-  "language": [
-    "en-US",
-    "en",
-    "pt",
-    "la"
-  ],
+  "ips": ["127.0.0.1"],
+  "language": ["en-US", "en", "pt", "la"],
   "method": "GET",
   "headers": {
     "host": "127.0.0.1:3333",
@@ -84,9 +77,7 @@ Resposta
       "idade": "18",
       "nome": "joao"
     },
-    "params": {
-      
-    },
+    "params": {},
     "headers": {
       "host": "127.0.0.1:3333",
       "connection": "keep-alive",
@@ -113,9 +104,7 @@ Resposta
     },
     "hostname": "127.0.0.1",
     "ip": "127.0.0.1",
-    "subdomains": {
-      
-    }
+    "subdomains": {}
   }
 }
 ```
@@ -125,7 +114,7 @@ Resposta
 o quando retornamos dentro do método, o adonis faz um `response.send()` por baixo dos panos
 
 ```js
-async index ({ request, response }){ 
+async index ({ request, response }){
   return {
     msg: "index do Painel",
   }
@@ -133,7 +122,7 @@ async index ({ request, response }){
 ```
 
 ```js
-async index ({ request, response }){ 
+async index ({ request, response }){
   response.send({
     msg: "index do Painel",
   })
@@ -143,7 +132,7 @@ async index ({ request, response }){
 ### Passando Status da requisição
 
 ```js
-async index ({ response }){ 
+async index ({ response }){
   response.status(404).send({
     msg: "Not Found",
   })
@@ -153,12 +142,13 @@ async index ({ response }){
 ### Redirecionando URL
 
 ```js
-async index ({ response }){ 
+async index ({ response }){
   response.redirect().toPath('/api/painel/usuarios/1')
 }
 ```
+
 ```js
-async index ({ response }){ 
+async index ({ response }){
   response.redirect('http://...')
 }
 ```

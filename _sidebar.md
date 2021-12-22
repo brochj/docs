@@ -33,6 +33,8 @@
   - [Parameters](/backend/nodejs/adonisjs/parameters.md)
   - [Query Strings](/backend/nodejs/adonisjs/query-strings.md)
   - [Request and Response](/backend/nodejs/adonisjs/request-response.md)
+  - [Views](/backend/nodejs/adonisjs/view.md)
+  - [Context](/backend/nodejs/adonisjs/context.md)
 - <strong>SwaggerUI</strong>
 
   - [Basic Routing](/backend/swagger/swagger-and-express.md)
