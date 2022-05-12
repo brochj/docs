@@ -54,7 +54,7 @@ Definições
 - Enquanto as pastas são as divisões físicas
 - Os namespaces são as divisões lógicas
 - Assim como não podemos ter dois arquivos com mesmo nome nas pastas
-- Não podemos ter duas classes com mesmo nome em um namespace
+- Não podemos ter duas classes com mesmo nome em um mesmo namespace
 - O ideal é ter apenas um namespace e uma classe por arquivo
 - O escopo de um namespace é definido entre CHAVES
   - Classes e métodos também
