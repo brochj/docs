@@ -152,7 +152,7 @@ ALTER TABLE [Aluno]
 
 ```sql
 CREATE TABLE [Aluno](
-    [Id] INT NOT NULL,
+    [Id] INT NOT NULL IDENTITY(1,1),
     [Name] NVARCHAR(80) NOT NULL,
     [Email] NVARCHAR(180) NOT NULL,
     [Nascimento] DATETIME NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE [ProgressoCurso] (
 GO
 
 CREATE TABLE [Categoria] (
-    [Id] INT NOT NULL,
+    [Id] INT NOT NULL IDENTITY(1,1),
     [Nome] NVARCHAR(80) NOT NULL,
 
     CONSTRAINT [PK_Categoria] PRIMARY KEY([Id])
@@ -220,4 +220,5 @@ CREATE TABLE [Curso] (
     [Id] UNIQUEIDENTIFIER NOT NULL, -- Gera o Id Automaticamente
     ....
 ```
+
 
