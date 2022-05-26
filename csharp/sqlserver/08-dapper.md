@@ -285,3 +285,185 @@ static void ExecuteReadStoredProcedure(SqlConnection connection)
 
 ```
 
+### Insere um elemento e retorna o Id (ExecuteScalar)
+
+```csharp
+static void ExecuteScalar(SqlConnection connection)
+{
+    var category = new Category();
+
+    category.Title = "Amazon AWS";
+    category.Url = "amazon-aws";
+    category.Summary = "AWS Cloud";
+    category.Order = 1;
+    category.Description = "Categoria destinada ao servicos do AWS";
+    category.Featured = true;
+
+    // inserted.[Id] Diz qual campo sera retornar no ExecuteScalar()
+    var insertSql = @"
+    INSERT INTO 
+        [Category] 
+    OUTPUT inserted.[Id]
+    VALUES(
+        NEWID(), 
+        @Title, 
+        @Url, 
+        @Summary, 
+        @Order, 
+        @Description, 
+        @Featured
+        )";
+
+    var id = connection.ExecuteScalar<Guid>(insertSql, new
+    {
+        category.Title, // mas se o nome for igual, não precisa atribuir.
+        category.Url,
+        category.Summary,
+        category.Order,
+        category.Description,
+        category.Featured,
+    });
+
+    Console.WriteLine($"O id do elemento inserido é: {id}");
+}
+
+```
+
+### Executando uma View
+
+```csharp
+static void ReadView(SqlConnection connection)
+{
+    var sql = "SELECT * FROM [vwCourses]";
+
+    var courses = connection.Query(sql);
+
+    foreach (var course in courses)
+    {
+        Console.WriteLine($"{course.Id} - {course.Title}");
+    }
+}
+```
+
+### ONE TO ONE
+
+Para fazer esse mapeamento é importante que já tenha feito uma classe para cada tabela do banco.
+
+```csharp
+public class Course
+{
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+}
+```
+
+```csharp
+public class CareerItem
+{
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+    public Course Course { get; set; }
+}
+```
+
+```csharp
+static void OneToOne(SqlConnection connection)
+{
+    var sql = @"
+        SELECT * FROM [CareerItem] 
+        INNER JOIN 
+            [Course] ON [CareerItem].[CourseId] = [Course].[Id]";
+
+    var items = connection.Query<CareerItem, Course, CareerItem>(
+        sql,
+        (carrerItem, course) =>
+        {
+            carrerItem.Course = course;
+            return carrerItem;
+        },
+        splitOn: "Id");
+
+    foreach (var item in items)
+    {
+        Console.WriteLine($"{item.Course.Title} - {item.Title}");
+    }
+}
+```
+
+```sql
+SELECT * FROM [CareerItem] 
+    INNER JOIN 
+        [Course] ON [CareerItem].[CourseId] = [Course].[Id]
+```
+
+Esse `INNER JOIN` vai trazer as duas tabelas (CareerItem, Course) como se fosse uma só.
+
+```csharp
+Query<CareerItem, Course, CareerItem>()
+
+Query<Tabela1, Tabela2, objetoFinalserá>()
+
+```
+
+```csharp
+(carrerItem, course) =>
+    {
+        carrerItem.Course = course; // colocando a "tabela2" dentro da  "objetoFinalserá"
+        return carrerItem; // SEMPRE RETORNAR O objetoFinalserá"
+    },
+```
+
+```csharp
+splitOn: "Id" // a partir de que coluna começa a tabela2 
+```
+
+### ONE TO Many
+```csharp
+static void OneToMany(SqlConnection connection)
+{
+    var sql = @"
+        SELECT
+            [Career].[Id],
+            [Career].[Title],
+            [CareerItem].[CareerId],
+            [CareerItem].[Title]
+        FROM
+            [Career]
+        INNER JOIN
+            [CareerItem] ON [CareerItem].[CareerId] = [Career].[Id]
+        ORDER BY
+            [Career].[Title]
+        ";
+    var careers = new List<Career>();
+    var items = connection.Query<Career, CareerItem, Career>(
+        sql,
+        (career, item) =>
+        {
+            var car = careers.Where(x => x.Id == career.Id).FirstOrDefault();
+            if (car == null)
+            {
+                car = career;
+                car.Items.Add(item);
+                careers.Add(car);
+            }
+            else
+            {
+                car.Items.Add(item);
+            }
+
+            return career;
+        },
+        splitOn: "CareerId");
+
+    foreach (var career in items)
+    {
+        Console.WriteLine($"{career.Title}");
+
+        foreach (var item in career.Items)
+        {
+            Console.WriteLine($" - {item.Title}");
+
+        }
+    }
+}
+```
