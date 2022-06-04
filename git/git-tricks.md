@@ -55,6 +55,37 @@ git stash apply <index>
 git stash apply 0
 ```
 
+## Desfazer erro que foi comitado e foi para produção
+
+Antes faça um backup para outra branch, só para garantir
+
+```sh
+git branch backup
+``` 
+
+Depois, **Certifique-se que você está na `main`**
+
+`git log --oneline` para escolher para qual commit vai voltar
+
+```sh
+git log --oneline
+```
+
+`git reset --hard <commit-hash-escolhido>` Para voltar a branch main (LOCALMENTE)
+
+```sh
+git reset --hard <commit-hash>
+```
+
+`git push -f origin main` atualizar a `main` no repositório
+
+- `-f` para forçar
+
+```sh
+git push -f origin main
+
+```
+
 ## Git bisect
 
 ```git

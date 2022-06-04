@@ -467,3 +467,149 @@ static void OneToMany(SqlConnection connection)
     }
 }
 ```
+
+### Query Multiple
+
+Executar várias query em seguidas
+
+```csharp
+static void QueryMultiple(SqlConnection connection)
+{
+    var query = "SELECT * FROM [Category]; SELECT * FROM [Course]"; // Separar por ;
+
+    using (var multi = connection.QueryMultiple(query))
+    {
+        var categories = multi.Read<Category>();
+        var courses = multi.Read<Course>();
+
+        foreach (var item in categories)
+        {
+            Console.WriteLine(item.Title);
+        }
+
+        foreach (var item in courses)
+        {
+            Console.WriteLine(item.Title);
+        }
+    }
+}
+```
+
+### Filtrando usando parametros
+
+```csharp
+static void SelectIn(SqlConnection connection)
+{
+    var query = @"SELECT * FROM [Career] 
+                    WHERE [Id] IN @Id";
+    var items = connection.Query<Career>(query, new
+    {
+        Id = new[]{
+            "9b788b19-a73b-5b2c-8f2e-4ab39a63fab9",
+            "dcdd38db-0176-552b-bcaf-32211c48aa7b"
+        }
+    });
+
+    foreach (var item in items)
+    {
+        Console.WriteLine(item.Title);
+    }
+
+}
+```
+
+### Usando LIKE
+
+```csharp
+static void Like(SqlConnection connection)
+{
+    var query = @"SELECT * FROM [Course] 
+                    WHERE [Title] LIKE @exp";
+    var items = connection.Query<Course>(query, new
+    {
+        exp = "%backend%"
+    });
+
+    foreach (var item in items)
+    {
+        Console.WriteLine(item.Title);
+    }
+
+}
+```
+Passando o termo como parâmetro
+
+```csharp
+static void Like(SqlConnection connection, string term)
+{
+    var query = @"SELECT * FROM [Course] 
+                    WHERE [Title] LIKE @exp";
+    var items = connection.Query<Course>(query, new
+    {
+        exp = $"%{term}%"
+    });
+
+    foreach (var item in items)
+    {
+        Console.WriteLine(item.Title);
+    }
+
+}
+```
+
+### Transactions
+
+```csharp
+static void RunTransaction(SqlConnection connection)
+{
+    var category = new Category();
+
+    category.Id = Guid.NewGuid();
+    category.Title = "Categoria que não quero salvar";
+    category.Url = "amazon-aws";
+    category.Summary = "AWS Cloud";
+    category.Order = 1;
+    category.Description = "Categoria destinada ao servicos do AWS";
+    category.Featured = true;
+
+    // NUNCA CONCATENE STRING, POIS FACILITA SQL INJECTION
+    var insertSql = @"INSERT INTO 
+        [Category] 
+    VALUES(
+        @abacate, 
+        @Title, 
+        @Url, 
+        @Summary, 
+        @Order, 
+        @Description, 
+        @Featured
+        )";
+
+    connection.Open();
+
+    using (var transaction = connection.BeginTransaction())
+    {
+        var rows = connection.Execute(insertSql, new
+        {
+            abacate = category.Id, // abacate é só para exemplificar que pode ser qualquer nome
+            category.Title, // mas se o nome for igual, não precisa atribuir.
+            category.Url,
+            category.Summary,
+            category.Order,
+            category.Description,
+            category.Featured,
+        },
+        transaction
+        );
+
+        // transaction.Commit(); // vai salvar as alterações
+        transaction.Rollback(); // vai inserir e depois desfazer as alterações
+
+        Console.WriteLine($"{rows} linha(s) inserida(s)");
+
+    }
+
+}
+
+
+```
